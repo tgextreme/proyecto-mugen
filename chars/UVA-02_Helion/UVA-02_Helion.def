@@ -1,0 +1,27 @@
+[Info]
+name    = "UVA-02_Helion"
+displayname = "UVA-02_Helion"
+;versiondate = 10,24,2004
+;mugenversion = WinMugen
+AUTHOR = "Gokusotsu"
+
+[Files]
+cmd      = UVA-02_Helion.cmd   ;Command set
+cns      = UVA-02_Helion.cns   ;Constants
+st       = UVA-02_Helion.cns   ;States
+st2      = UVA-02_Helion-N.cns
+st3      = UVA-02_Helion-S.cns
+st4      = UVA-02_Helion-H.cns
+st5      = UVA-02_Helion-A.cns
+st6      = UVA-02_Helion-W.cns
+st7      = UVA-02_Helion-P.cns
+st8      = UVA-02_Helion-T.cns
+st9      = UVA-02_Helion-C.cns
+;st10     = UVA-02_Helion-Sunaba.cns
+stcommon = common1.cns     ;Common states
+sprite   = UVA-02_Helion.sff   ;Sprite
+anim     = UVA-02_Helion.air   ;Animation
+sound    = UVA-02_Helion.snd   ;Animation
+pal1     = UVA-02_Helion01.act
+pal2     = UVA-02_Helion02.act
+pal7    = SVA-1000S_Helion.act

@@ -1,0 +1,462 @@
+;---------------------------------------------------------------------------
+; Override common states (use same number to override) :
+;---------------------------------------------------------------------------
+
+;---------------------------------------------------------------------------
+; States that are always executed (use statedef -2)
+;---------------------------------------------------------------------------
+[Statedef -2]
+
+[State -2, VarSet]
+type = VarSet
+trigger1 = StateType = L
+trigger2 = MoveType != H
+ignorehitpause = 1
+fvar(10) = 0
+
+[State -2, RemoveExplod]
+type = RemoveExplod
+trigger1 = StateNo != 900
+ignorehitpause = 1
+id = 950
+
+[State -2, Explod]
+type = RemoveExplod
+trigger1 = StateNo != 1100
+ignorehitpause = 1
+id = 1110
+
+[State -2, Explod]
+type = RemoveExplod
+trigger1 = StateNo != 1105
+ignorehitpause = 1
+id = 1115
+
+[State -2, Explod]
+type = RemoveExplod
+trigger1 = StateNo != 1105
+trigger2 = Anim != 1105
+ignorehitpause = 1
+id = 1120
+
+;----- Electricuted Sound -----
+[State -2, PlaySnd]
+type = null ;PlaySnd
+triggerall = NumEnemy > 0
+triggerall = Enemy, Name != "Zero-Akuma"
+triggerall = Enemy, TimeMod = 5,0
+triggerall = Enemy, MoveType = H
+trigger1 = Enemy, StateNo = [9000,9001]
+trigger2 = Enemy, StateNo = [9010,9011]
+value = 4, 1
+channel = 5
+
+[State -2, PlaySnd]
+type = PlaySnd
+triggerall = TimeMod = 5,0
+triggerall = MoveType = H
+trigger1 = Anim = 7696
+trigger2 = Anim = 7697
+trigger3 = Anim = 9999
+value = 4, 1
+channel = 5
+;-------------------------
+
+;----- Electric Sparks -----
+[State -2, Explod]
+type = Explod
+triggerall = Random <= 20
+trigger1 = Anim = 170
+trigger2 = Anim = 5300
+ignorehitpause = 1
+bindtime = -1
+anim = 5310
+pos = 0,0
+postype = p1
+sprpriority = 2
+ownpal = 1
+
+[State -2, Explod]
+type = Explod
+triggerall = Random <= 20
+trigger1 = Anim = 170
+trigger2 = Anim = 5300
+ignorehitpause = 1
+bindtime = -1
+anim = 5311
+pos = 0,0
+postype = p1
+sprpriority = 2
+ownpal = 1
+
+[State -2, Explod]
+type = Explod
+triggerall = Random <= 20
+trigger1 = Anim = 170
+trigger2 = Anim = 5300
+ignorehitpause = 1
+bindtime = -1
+anim = 5312
+pos = 0,0
+postype = p1
+sprpriority = 2
+ownpal = 1
+;-------------------------
+
+;----- MAX Power Shine -----
+[State -2, VarSet]
+type = VarSet
+trigger1 = Var(50) > 0
+trigger1 = Power < 1000
+ignorehitpause = 1
+var(50) = 0
+
+[State -2, VarSet]
+type = VarSet
+trigger1 = Power >= 1000
+trigger1 = Var(50) = 0
+ignorehitpause = 1
+var(50) = 1
+
+[State -2, VarSet]
+type = VarSet
+trigger1 = Var(55) >= 500
+trigger2 =  RoundState < 2
+ignorehitpause = 1
+var(50) = 2
+
+[State -2, VarAdd]
+type = VarAdd
+trigger1 = Var(50) > 0
+ignorehitpause = 1
+var(55) = 1
+
+[State -2, VarSet]
+type = VarSet
+trigger1 = Var(55) > 500
+trigger2 = Power < 1000
+trigger3 =  RoundState < 2
+ignorehitpause = 1
+var(55) = 0
+
+[State -2, PalFX]
+type = PalFX
+triggerall = Var(50) = 1
+trigger1 = Power >= 1000
+trigger1 = TimeMod = 4,0
+ignorehitpause = 1
+time = 2
+add = 100,150,200
+mul = 240,200,240
+color = 0
+;-------------------------
+
+;----- Power Decrease -----
+[State -2, PowerAdd]
+type = PowerAdd
+trigger1 = Var(10) > 0
+ignorehitpause = 1
+value = -20
+
+[State -2, PowerSet]
+type = PowerSet
+trigger1 = Var(7) > 0
+ignorehitpause = 1
+Value = Var(7)
+
+[State -2, VarSet]
+type = VarSet
+trigger1 = Power <= 0
+ignorehitpause = 1
+var(10) = 0
+;-------------------------
+
+;--------------------
+; Player Won A Round
+;--------------------
+[State -2, VarSet]
+type = VarSet
+triggerall = RoundState > 2
+trigger1 = RoundNo > 0
+trigger1 = Win
+v = 40
+value = RoundNo
+
+[State -2, VarSet]
+type = VarSet
+triggerall = RoundState > 2
+triggerall = DrawGame
+trigger1 = RoundNo > 1
+trigger1 = Var(40) = 0
+trigger2 = RoundNo > 2
+trigger2 = Var(40) > 0
+v = 40
+value = RoundNo + 1
+;--------------------
+
+;--------------------
+; Enemy Won A Round
+;--------------------
+[State -2, VarSet]
+type = VarSet
+triggerall = RoundState > 2
+trigger1 = RoundNo > 0
+trigger1 = Enemy, Win
+v = 41
+value = RoundNo
+
+[State -2, VarSet]
+type = VarSet
+triggerall = RoundState > 2
+triggerall = DrawGame
+trigger1 = RoundNo > 1
+trigger1 = Var(41) = 0
+trigger2 = RoundNo > 2
+trigger2 = Var(41) > 0
+v = 41
+value = RoundNo + 1
+;--------------------
+
+;--------------------
+; Draw Game Round
+;--------------------
+[State -2, VarSet]
+type = VarSet
+trigger1 = RoundNo > 3
+v = 42
+value = 0
+
+[State -2, VarSet]
+type = VarSet
+triggerall = RoundState > 2
+trigger1 = RoundNo > 0
+trigger1 = RoundNo < 4
+trigger1 = DrawGame
+v = 42
+value = RoundNo
+;--------------------
+
+;----- KO Explode -----
+[State -2, State]
+type = SelfState
+triggerall = Life = 0
+triggerall = HitOver
+triggerall = RoundState > 2
+triggerall = PrevStateNo != 6010
+triggerall = StateNo != 6010
+triggerall = MoveType = H
+triggerall = Anim != 170
+triggerall = Anim != 5300
+triggerall = TeamMode = Turns
+trigger1 = StateType != L
+trigger1 = StateType != A
+trigger2 = StateType = A
+trigger2 = Vel Y > 5
+trigger3 = StateNo = 5150
+trigger3 = Time > 5
+trigger3 = Time < 10
+value = 6010
+
+[State -2, State]
+type = SelfState
+triggerall = Life = 0
+triggerall = HitOver
+triggerall = RoundNo > 3
+triggerall = RoundState > 2
+triggerall = PrevStateNo != 6010
+triggerall = StateNo != 6010
+triggerall = MoveType = H
+triggerall = Anim != 170
+triggerall = Anim != 5300
+trigger1 = StateType != L
+trigger1 = StateType != A
+trigger2 = StateType = A
+trigger2 = Vel Y > 5
+trigger3 = StateNo = 5150
+trigger3 = Time > 5
+trigger3 = Time < 10
+value = 6010
+
+[State -2, State]
+type = SelfState
+triggerall = Life = 0
+triggerall = HitOver
+triggerall = RoundNo = 3
+triggerall = RoundState > 2
+triggerall = Var(40) > 0
+triggerall = Var(41) > 0
+triggerall = Var(42) > 0
+triggerall = Var(40) = RoundNo + 1
+triggerall = Var(41) = RoundNo + 1
+triggerall = Var(42) = RoundNo
+triggerall = PrevStateNo != 6010
+triggerall = StateNo != 6010
+triggerall = MoveType = H
+triggerall = Anim != 170
+triggerall = Anim != 5300
+trigger1 = StateType != L
+trigger1 = StateType != A
+trigger2 = StateType = A
+trigger2 = Vel Y > 5
+trigger3 = StateNo = 5150
+trigger3 = Time > 5
+trigger3 = Time < 10
+value = 6010
+
+[State -2, State]
+type = SelfState
+triggerall = Life = 0
+triggerall = HitOver
+triggerall = Var(40) > 0
+triggerall = Var(41) > 0
+triggerall = RoundNo <= 3
+triggerall = RoundState > 2
+triggerall = Var(40) = Var(41)
+triggerall = Var(40) <= RoundNo
+triggerall = Var(41) >= RoundNo
+triggerall = Var(42) <= RoundNo
+triggerall = PrevStateNo != 6010
+triggerall = StateNo != 6010
+triggerall = MoveType = H
+triggerall = Anim != 170
+triggerall = Anim != 5300
+trigger1 = StateType != L
+trigger1 = StateType != A
+trigger2 = StateType = A
+trigger2 = Vel Y > 5
+trigger3 = StateNo = 5150
+trigger3 = Time > 5
+trigger3 = Time < 10
+value = 6010
+
+[State -2, State]
+type = SelfState
+triggerall = Life = 0
+triggerall = HitOver
+triggerall = Var(40) > 0
+triggerall = Var(41) > 0
+triggerall = RoundNo <= 3
+triggerall = RoundState > 2
+triggerall = Var(40) <= Var(41)
+triggerall = Var(40) <= RoundNo
+triggerall = Var(41) >= RoundNo
+triggerall = Var(42) < RoundNo - 2
+triggerall = PrevStateNo != 6010
+triggerall = StateNo != 6010
+triggerall = MoveType = H
+triggerall = Anim != 170
+triggerall = Anim != 5300
+trigger1 = StateType != L
+trigger1 = StateType != A
+trigger2 = StateType = A
+trigger2 = Vel Y > 5
+trigger3 = StateNo = 5150
+trigger3 = Time > 5
+trigger3 = Time < 10
+value = 6010
+
+[State -2, State]
+type = SelfState
+triggerall = Life = 0
+triggerall = HitOver
+triggerall = RoundNo <= 3
+triggerall = RoundState > 2
+triggerall = Var(40) < RoundNo - 1
+triggerall = Var(41) >= RoundNo
+triggerall = Var(42) < RoundNo - 1
+triggerall = PrevStateNo != 6010
+triggerall = StateNo != 6010
+triggerall = MoveType = H
+triggerall = Anim != 170
+triggerall = Anim != 5300
+trigger1 = StateType != L
+trigger1 = StateType != A
+trigger2 = StateType = A
+trigger2 = Vel Y > 5
+trigger3 = StateNo = 5150
+trigger3 = Time > 5
+trigger3 = Time < 10
+value = 6010
+;--------------------
+
+;---------------------------------------------------------------------------
+; States that are executed when in self's state file (use statedef -3)
+;---------------------------------------------------------------------------
+[Statedef -3]
+
+;--------------------
+; Air Stand Bug Fix 
+[State -3, State]
+type = ChangeState
+trigger1 = StateNo = 0
+trigger1 = Pos Y != 0
+value = 50
+;--------------------
+
+;----- Hit System -----
+[State -3, 1]
+type = ChangeState
+triggerall = Life = 0
+triggerall = Pos Y >= 0
+triggerall = !HitShakeOver
+triggerall = StateNo >= 5000
+triggerall = StateNo < 5080
+trigger1 = StateNo != 53000
+trigger1 = GetHitVar(yvel) >= -6
+trigger1 = GetHitVar(GroundType) < 3
+value = 53000
+
+[State -3, 1]
+type = ChangeState
+triggerall = !HitFall
+triggerall = !HitShakeOver
+triggerall = StateNo >= 5000
+triggerall = StateNo < 5080
+triggerall = StateNo != 5070
+trigger1 = StateNo != 50000
+trigger1 = StateType = A
+value = 50000
+
+[State -3, 1]
+type = ChangeState
+triggerall = HitFall
+triggerall = FVar(10) = 0
+triggerall = !HitShakeOver
+triggerall = StateNo >= 5000
+triggerall = StateNo < 5080
+triggerall = StateNo != 5070
+triggerall = StateNo != 50300
+triggerall = StateType = A
+trigger1 = Anim = [5030,5039]
+trigger2 = Anim = [5050,5069]
+value = 50300
+
+[State -3, 1]
+type = ChangeState
+triggerall = HitFall
+triggerall = FVar(10) > 0
+triggerall = !HitShakeOver
+triggerall = StateNo >= 5000
+triggerall = StateNo < 5080
+triggerall = StateNo != 5070
+triggerall = StateNo != 50500
+triggerall = StateType = A
+trigger1 = Anim = [5030,5039]
+trigger2 = Anim = [5050,5069]
+value = 50500
+
+[State -3, 1]
+type = ChangeState
+triggerall = HitFall
+triggerall = HitShakeOver
+triggerall = StateNo >= 5000
+triggerall = StateNo < 5080
+triggerall = StateNo != 5070
+triggerall = StateNo != 50301
+triggerall = StateType = A
+trigger1 = Anim = [5030,5039]
+trigger2 = Anim = [5050,5069]
+value = 50301
+;--------------------
+
+;---------------------------------------------------------------------------

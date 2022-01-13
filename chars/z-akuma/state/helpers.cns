@@ -1,0 +1,2554 @@
+; Zero-Akuma Helpers
+;---------------------------------------------------------------------------
+; Shot
+[Statedef 610]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 9,8
+sprpriority = 5
+anim = 610
+ctrl = 0
+
+[State 610, HitBy]
+type = HitBy
+trigger1 = 1
+value = SCA, AP
+time = 1
+
+[State 610, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA, AP
+stateno = 611
+time = 1
+
+[State 610, VelSet]
+type = VelSet
+trigger1 = IsHelper(610)
+x = 9
+y = 8
+
+[State 610, VelSet]
+type = VelSet
+trigger1 = IsHelper(611)
+x = 8.5
+y = 9
+
+[State 610, VelSet]
+type = VelSet
+trigger1 = IsHelper(612)
+x = 8
+y = 10
+
+[State 610, HitDef]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, NP
+damage    = 20,0
+animtype  = Medium
+hitflag = MAFD
+guardflag = H
+pausetime = 0,5
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 0, 0
+hitsound   = S1,21
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 10
+ground.hittime = 15
+ground.velocity = 0
+guard.velocity = -2
+airguard.velocity = -2,-2  
+air.hittime = 10 
+air.type = High
+air.velocity = -4,-4
+down.velocity = 0,0
+air.juggle = 1
+
+[State 610, 4]
+type = ChangeState
+trigger1 = Time > 0
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+trigger2 = MoveContact
+value = 611
+
+;---------------------------------------------------------------------------
+; Shot Destroy
+[Statedef 611]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 0,0
+sprpriority = 5
+anim = 611
+ctrl = 0
+
+[State 610, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 610, PosAdd]
+type = PosAdd
+trigger1 = Time = 0
+x = 10
+y = 10
+
+[State 610, PosSet]
+type = PosSet
+trigger1 = Pos Y >= 0
+y = 0
+
+[State 610, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+
+;---------------------------------------------------------------------------
+; Shot
+[Statedef 615]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 9,8
+sprpriority = 5
+anim = 615
+ctrl = 0
+
+[State 615, HitBy]
+type = HitBy
+trigger1 = 1
+value = SCA, AP
+time = 1
+
+[State 615, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA, AP
+stateno = 616
+time = 1
+
+[State 615, VelSet]
+type = VelSet
+trigger1 = IsHelper(615)
+x = 9
+y = 8
+
+[State 615, VelSet]
+type = VelSet
+trigger1 = IsHelper(616)
+x = 8.5
+y = 9
+
+[State 615, VelSet]
+type = VelSet
+trigger1 = IsHelper(617)
+x = 8
+y = 10
+
+[State 615, HitDef]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, NP
+damage    = 20,0
+animtype  = Medium
+hitflag = MAFD
+guardflag = H
+pausetime = 0,5
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 0, 0
+hitsound   = S1,21
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 10
+ground.hittime = 15
+ground.velocity = 0
+guard.velocity = -2
+airguard.velocity = -2,-2  
+air.hittime = 10 
+air.type = High
+air.velocity = -4,-4
+down.velocity = 0,0
+air.juggle = 1
+
+[State 615, 4]
+type = ChangeState
+trigger1 = Time > 0
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+trigger2 = MoveContact
+value = 616
+
+;---------------------------------------------------------------------------
+; Shot Destroy
+[Statedef 616]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 0,0
+sprpriority = 5
+anim = 616
+ctrl = 0
+
+[State 615, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 615, PosAdd]
+type = PosAdd
+trigger1 = Time = 0
+x = 10
+y = 10
+
+[State 615, PosSet]
+type = PosSet
+trigger1 = Pos Y >= 0
+y = 0
+
+[State 615, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+
+;---------------------------------------------------------------------------
+; Rocket
+[Statedef 620]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 15,15
+sprpriority = 5
+anim = 620
+ctrl = 0
+
+[State 620, HitBy]
+type = HitBy
+trigger1 = 1
+value = SCA, AP
+time = 1
+
+[State 620, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA, AP
+stateno = 621
+time = 1
+
+[State 620, VarRandom]
+type = VarRandom
+trigger1 = Time <= 0
+range = 14,16
+v = 0
+
+[State 620, VarRandom]
+type = VarRandom
+trigger1 = Time <= 0
+range = 14,16
+v = 1
+
+[State 620, VelSet]
+type = VelSet
+trigger1 = Var(0) > 0
+trigger1 = Var(1) > 0
+x = Var(0)
+y = Var(1)
+
+[State 620, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+persistent = 0
+time = 2
+
+[State 620, HitDef]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, HP
+damage    = 50,10
+animtype  = Medium
+hitflag = MAFD
+guardflag = H
+pausetime = 0,5
+sparkno = S623
+guard.sparkno = S622
+sparkxy = -10, 0
+hitsound   = S1,26
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 15
+ground.hittime = 20
+ground.velocity = 0
+guard.velocity = -2
+airguard.velocity = -2,-2  
+air.hittime = 20 
+air.type = High
+air.velocity = -4,-4
+down.velocity = 0,0
+air.juggle = 1
+
+[State 620, 4]
+type = ChangeState
+trigger1 = Time > 0
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+trigger2 = MoveContact
+value = 621
+
+;---------------------------------------------------------------------------
+; Rocket Destroy
+[Statedef 621]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 0,0
+sprpriority = 5
+anim = 621
+ctrl = 0
+
+[State 620, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 620, PosAdd]
+type = PosAdd
+trigger1 = Time = 0
+x = 15
+y = -10
+
+[State 620, PosSet]
+type = PosSet
+trigger1 = Pos Y >= 0
+y = 0
+
+[State 620, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+
+;---------------------------------------------------------------------------
+; Power Explode
+[Statedef 910]
+movetype = A
+velset = 0,0
+sprpriority = 10
+anim = 910
+ctrl = 0
+
+[State 910, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 910, BindToRoot]
+type = BindToRoot
+trigger1 = 1
+facing = 1
+pos = 0,0
+time = 1
+
+[State 910, Flame]
+type = Explod
+trigger1 = MoveHit = 1
+ignorehitpause = 1
+persistent = 0
+anim = 500
+id = 500
+postype = p2
+pos = 0,0
+bindtime = -1
+sprpriority = 15
+ownpal = 1
+shadow = 100,100,100
+
+[State 910, HitDef]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+damage = 100, 10
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 10
+sparkno = 2
+sparkxy = -10, -60
+hitsound = S2, 15
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+ground.velocity = -5,-5
+airguard.velocity = -2,-2
+air.type = High
+air.velocity = -4,-4
+air.hittime = 15
+palfx.time = 25
+palfx.add = 200,100,0
+palfx.color = 0
+air.fall = 1
+fall = 1
+
+[State 910, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+trigger2 = Root, StateNo != 901
+trigger3 = Root, Anim != 900
+
+;---------------------------------------------------------------------------
+; Power Charge Effect
+[Statedef 950]
+velset = 0,0
+sprpriority = 10
+anim = 950
+ctrl = 0
+
+[State 950, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 950, BindToRoot]
+type = BindToRoot
+trigger1 = 1
+facing = 1
+pos = 0,-85
+time = 1
+
+[State 950, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 20, 0
+channel = 1
+
+[State 950, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 33
+trigger2 = AnimElem = 57
+value = 20, 1
+channel = 1
+
+[State 950, Destroy]
+type = DestroySelf
+trigger1 = Root, StateNo != 900
+
+;---------------------------------------------------------------------------
+; SuperPause Effect
+[Statedef 955]
+velset = 0,0
+sprpriority = 10
+anim = 955
+ctrl = 0
+
+[State 955, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 955, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 955, Pause]
+type = Pause
+trigger1 = Time <= 0
+time = 30
+movetime = 30
+
+[State 955, EnvColor]
+type = EnvColor
+trigger1 = Time <= 30
+trigger1 = TimeMod = 2,0
+value = 240,240,240
+ignorehitpause = 1
+persistent = 1
+time = 1
+
+[State 955, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 20, 10
+channel = 1
+
+[State 955, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+trigger2 = Time > 30
+
+;---------------------------------------------------------------------------
+; Fireball Object
+[Statedef 1010]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = Root, Var(0),0
+sprpriority = 5
+anim = 1010
+ctrl = 0
+
+[State 1010, 1]
+type = HitBy
+trigger1 = 1
+value = SCA, AP
+time = 1
+
+[State 1010, 1]
+type = HitOverride
+trigger1 = 1
+attr = SCA, AP
+stateno = 1011
+time = 1
+
+[State 1010, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 20
+channel = 0
+
+[State 1010, Flame]
+type = Explod
+trigger1 = MoveHit = 1
+ignorehitpause = 1
+persistent = 0
+anim = 500
+id = 500
+postype = p2
+pos = 0,0
+bindtime = -1
+sprpriority = 15
+ownpal = 1
+shadow = 100,100,100
+
+[State 1010, HitDef]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SP
+damage = 100, 10
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 0, 5
+sparkno = 2
+sparkxy = -10, 0
+hitsound = S2, 15
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+ground.velocity = -5,-5
+airguard.velocity = -2,-2
+air.type = High
+air.velocity = -4,-4
+air.hittime = 15
+palfx.time = 25
+palfx.add = 200,100,0
+palfx.color = 0
+air.fall = 1
+fall = 1
+
+[State 1010, Destroy]
+type = DestroySelf
+trigger1 = BackEdgeBodyDist <= -100
+trigger2 = FrontEdgeBodyDist <= -100
+
+[State 1010, State]
+type = ChangeState
+trigger1 = MoveContact
+value = 1011
+
+;---------------------------------------------------------------------------
+; Fireball Destroy
+[Statedef 1011]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 0,0
+sprpriority = 5
+anim = 1011
+ctrl = 0
+
+[State 1010, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1010, PosAdd]
+type = PosAdd
+trigger1 = IsHelper(1010)
+trigger1 = Time = 0
+x = -20
+
+[State 1010, PosAdd]
+type = PosAdd
+trigger1 = IsHelper(1035)
+trigger1 = Time = 0
+x = -20
+y = -20
+
+[State 1010, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 26
+channel = 1
+
+[State 1010, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+
+;---------------------------------------------------------------------------
+; Beam Front
+[Statedef 1020]
+type = A
+movetype = A
+physics = N
+velset = 0,0
+sprpriority = 5
+anim = 1020
+ctrl = 0
+
+[State 1020, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1020, BindToRoot]
+type = BindToRoot
+trigger1 = 1
+facing = 1
+pos = 60,-55
+time = 1
+
+[State 1020, Invisible]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 1020, PlaySnd]
+type = PlaySnd
+trigger1 = Time <= 0
+value = 1, 30
+channel = 0
+
+[State 1020, 4]
+type = Helper
+trigger1 = Time <= 0
+helpertype = normal
+ignorehitpause = 1
+name = "Beam"
+id = 1022
+facing = 1
+pos = -30,0
+postype = P1
+stateno = 1023
+keyctrl = 0
+ownpal = 1
+size.ground.back = 0
+size.ground.front = 0
+size.air.back = 0
+size.air.front = 0
+
+[State 1020, Explod]
+type = Explod
+trigger1 = Time <= 0
+sprpriority = 10
+pos = 0, 0
+id = 1020
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1020
+
+;----- Beam Stretching -----
+[State 1020, Explod]
+type = Explod
+trigger1 = Facing = 1
+trigger1 = Time <= 0
+sprpriority = 9
+pos = 0, 0
+id = 1021
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1021
+
+[State 1020, Explod]
+type = Explod
+trigger1 = Facing = -1
+trigger1 = Time <= 0
+sprpriority = 9
+pos = 0, 0
+id = 1021
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1022
+
+[State 1020, Explod]
+type = ModifyExplod
+triggerall = NumHelper(1022) > 0
+trigger1 = Helper(1022), Var(0) >= 5
+trigger2 = Helper(1022), Vel X != 0
+scale = Helper(1022), ParentDist X - 30,1
+id = 1021
+
+[State 1020, Explod]
+type = ModifyExplod 
+triggerall = Time > 0
+triggerall = NumHelper(1022) > 0
+triggerall = ifelse(facing = -1, Helper(1022), Pos X <= Pos X, Helper(1022), Pos X >= Pos X)
+trigger1 = Helper(1022), Var(0) < 5
+trigger1 = Helper(1022), Vel X = 0
+scale = Helper(1022), ParentDist X - 5,1
+id = 1021
+
+[State 1020, Explod]
+type = ModifyExplod
+triggerall = Time >= 2
+triggerall = NumHelper(1022) > 0
+trigger1 = ifelse(facing = -1, Helper(1022), Pos X > Pos X, Helper(1022), Pos X < Pos X)
+scale = 1,1
+id = 1021
+;-------------------------
+
+;----- Electrical Effects -----
+[State 1020, Explod]
+type = RemoveExplod
+trigger1 = Time > 0
+trigger1 = TimeMod = 12,3
+trigger2 = NumHelper(1022) > 0
+trigger2 = Helper(1022), StateNo != 1023
+id = 1007
+
+[State 1020, Explod]
+type = Explod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), ParentDist X <= -30
+trigger1 = Time > 0
+trigger1 = TimeMod = 12,3
+sprpriority = 15
+anim = 1007
+id = 1007
+pos = 0,0
+postype = p1
+bindtime = -1
+;persistent = 0
+removetime = -1
+ownpal = 1
+
+[State 1020, Explod]
+type = Explod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), ParentDist X <= -30
+trigger1 = Time > 0
+trigger1 = TimeMod = 12,3
+sprpriority = 5
+anim = 1008
+id = 1007
+pos = 0,0
+postype = p1
+bindtime = -1
+;persistent = 0
+removetime = -1
+ownpal = 1
+
+[State 1020, Explod]
+type = Explod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), ParentDist X <= -150
+trigger1 = Time > 0
+trigger1 = TimeMod = 12,3
+sprpriority = 15
+anim = 1007
+id = 1007
+pos = 80,0
+postype = p1
+bindtime = -1
+;persistent = 0
+removetime = -1
+ownpal = 1
+
+[State 1020, Explod]
+type = Explod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), ParentDist X <= -150
+trigger1 = Time > 0
+trigger1 = TimeMod = 12,3
+sprpriority = 5
+anim = 1008
+id = 1007
+pos = 80,0
+postype = p1
+bindtime = -1
+;persistent = 0
+removetime = -1
+ownpal = 1
+
+[State 1020, Explod]
+type = Explod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), ParentDist X <= -200
+trigger1 = Time > 0
+trigger1 = TimeMod = 12,3
+sprpriority = 15
+anim = 1007
+id = 1007
+pos = 160,0
+postype = p1
+bindtime = -1
+;persistent = 0
+removetime = -1
+ownpal = 1
+
+[State 1020, Explod]
+type = Explod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), ParentDist X <= -200
+trigger1 = Time > 0
+trigger1 = TimeMod = 12,3
+sprpriority = 5
+anim = 1008
+id = 1007
+pos = 160,0
+postype = p1
+bindtime = -1
+;persistent = 0
+removetime = -1
+ownpal = 1
+
+[State 1020, Explod]
+type = RemoveExplod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), Var(0) > 0
+trigger1 = Helper(1022), StateTime >= 30
+trigger2 = Root, Var(0) = 0
+trigger2 = Helper(1022), Var(1) >= 3
+trigger3 = Root, Var(0) > 0
+trigger3 = Helper(1022), Var(1) >= 5
+id = 1007
+;-------------------------
+
+;----- Beam Dissapearing -----
+;-Animated-
+[State 1020, Explod]
+type = RemoveExplod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), Var(0) > 0
+trigger1 = Helper(1022), StateTime >= 30
+trigger2 = Root, Var(0) = 0
+trigger2 = Helper(1022), Var(1) >= 3
+trigger3 = Root, Var(0) > 0
+trigger3 = Helper(1022), Var(1) >= 5
+id = 1020
+
+[State 1020, Explod]
+type = RemoveExplod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), Var(0) > 0
+trigger1 = Helper(1022), StateTime >= 30
+trigger2 = Root, Var(0) = 0
+trigger2 = Helper(1022), Var(1) >= 3
+trigger3 = Root, Var(0) > 0
+trigger3 = Helper(1022), Var(1) >= 5
+id = 1021
+
+[State 1020, Explod]
+type = Explod
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), Var(0) > 0
+trigger1 = Helper(1022), StateTime >= 30
+trigger2 = Root, Var(0) = 0
+trigger2 = Helper(1022), Var(1) >= 3
+trigger3 = Root, Var(0) > 0
+trigger3 = Helper(1022), Var(1) >= 5
+sprpriority = 10
+persistent = 0
+pos = 0, 0
+id = 1025
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1025
+
+[State 1020, Explod]
+type = Explod
+triggerall = Facing = 1
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), Var(0) > 0
+trigger1 = Helper(1022), StateTime >= 30
+trigger2 = Root, Var(0) = 0
+trigger2 = Helper(1022), Var(1) >= 3
+trigger3 = Root, Var(0) > 0
+trigger3 = Helper(1022), Var(1) >= 5
+sprpriority = 9
+persistent = 0
+pos = 0, 0
+id = 1026
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1026
+
+[State 1020, Explod]
+type = Explod
+triggerall = Facing = -1
+triggerall = NumHelper(1022) > 0
+triggerall = Helper(1022), StateNo = 1023
+triggerall = Helper(1022), Var(0) > 0
+trigger1 = Helper(1022), StateTime >= 30
+trigger2 = Root, Var(0) = 0
+trigger2 = Helper(1022), Var(1) >= 3
+trigger3 = Root, Var(0) > 0
+trigger3 = Helper(1022), Var(1) >= 5
+sprpriority = 9
+persistent = 0
+pos = 0, 0
+id = 1026
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1027
+
+[State 1020, Explod]
+type = ModifyExplod
+trigger1 = NumHelper(1022) > 0
+trigger1 = Helper(1022), ParentDist X <= 0 
+scale = Helper(1022), ParentDist X - 2,1
+id = 1026
+;----------
+
+;-Resize-
+[State 1020, Explod]
+type = null ;ModifyExplod
+trigger1 = NumHelper(1022) > 0
+trigger1 = Helper(1022), StateNo = 1025
+scale = 1, (Helper(1022),Var(0)-1)*.10
+id = 1020
+
+[State 1020, Explod]
+type = null ;ModifyExplod
+trigger1 = NumHelper(1022) > 0
+trigger1 = Helper(1022), StateNo = 1025
+scale = Helper(1022),ParentDist X - 2, (Helper(1022),Var(0)-1)*.10
+id = 1021
+;----------
+;-------------------------
+
+[State 1020, Explod]
+type = RemoveExplod
+trigger1 = Root, MoveType != A
+
+[State 1020, Destroy]
+type = DestroySelf
+triggerall = Time > 0
+trigger1 = NumHelper(1022) = 0
+trigger2 = NumHelper(1022) > 0
+trigger2 = Helper(1022), StateNo = 1025
+trigger2 = Helper(1022), AnimTime = 0
+trigger3 = Root, MoveType != A
+
+;---------------------------------------------------------------------------
+; Beam Shot
+[Statedef 1023]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 30,0
+sprpriority = 5
+anim = 1023
+ctrl = 0
+
+[State 1020, 0]
+type = ChangeAnim
+trigger1 = MoveContact
+trigger2 = Var(0) < 5
+ignorehitpause = 1
+value = Anim
+elem = 1
+
+[State 1020, 0]
+type = ChangeAnim
+trigger1 = BackEdgeBodyDist <= -100
+trigger2 = FrontEdgeBodyDist <= -100
+ignorehitpause = 1
+value = Anim
+elem = AnimElemNo(0) - 1
+
+[State 1020, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1020, Invisible]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 1020, PosSet]
+type = PosSet
+trigger1 = NumHelper(1020) > 0
+ignorehitpause = 1
+y = Helper(1020), Pos Y
+
+[State 1020, Explod]
+type = Explod
+trigger1 = Time <= 0
+sprpriority = 10
+pos = 0, 0
+id = 1023
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1023
+
+[State 1020, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(0) = 5
+
+[State 1020, VarSet]
+type = VarSet
+trigger1 = MoveContact
+ignorehitpause = 1
+var(0) = 0
+
+[State 1020, VarAdd]
+type = VarAdd
+trigger1 = MoveContact = 0
+ignorehitpause = 1
+var(0) = 1
+
+[State 1020, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(1) = 0
+
+[State 1020, VarAdd]
+type = VarAdd
+trigger1 = Var(0) = 0
+var(1) = 1
+
+[State 1020, VelSet]
+type = VelSet
+trigger1 = Var(0) >= 6
+x = 30
+
+[State 1020, VelSet]
+type = VelSet
+trigger1 = MoveContact
+trigger2 = BackEdgeBodyDist <= -100
+trigger3 = FrontEdgeBodyDist <= -100
+ignorehitpause = 1
+x = 0
+
+[State 1020, PosSet]
+type = PosSet
+triggerall = Time > 0
+triggerall = NumHelper(1020) > 0
+triggerall = NumHelper(1022) > 0
+trigger1 = Facing = 1
+trigger1 = Pos X < Helper(1020), Pos X
+trigger2 = Facing = -1
+trigger2 = Pos X > Helper(1020), Pos X
+trigger3 = Facing = 1
+trigger3 = NumTarget > 0
+trigger3 = Target, Pos X < Helper(1022), Pos X
+trigger3 = Var(0) < 5 ;MoveContact
+trigger4 = Facing = -1
+trigger4 = NumTarget > 0
+trigger4 = Target, Pos X > Helper(1022), Pos X
+trigger4 = Var(0) < 5 ;MoveContact
+trigger5 = Facing = 1
+trigger5 = NumTarget = 0
+trigger5 = Enemy, Pos X < Helper(1022), Pos X
+trigger5 = Var(0) < 5 ;MoveContact
+trigger6 = Facing = -1
+trigger6 = NumTarget = 0
+trigger6 = Enemy, Pos X > Helper(1022), Pos X
+trigger6 = Var(0) < 5 ;MoveContact
+ignorehitpause = 1
+x = Helper(1020), Pos X
+
+[State 1020, PosSet]
+type = PosSet
+triggerall = NumTarget > 0
+triggerall = NumHelper(1020) > 0
+triggerall = Target, Pos X >= Helper(1020), Pos X + 10
+triggerall = Facing = 1
+trigger1 = Var(0) < 5 ;MoveContact
+ignorehitpause = 1
+x = Target, Pos X - 10
+
+[State 1020, PosSet]
+type = PosSet
+triggerall = NumTarget > 0
+triggerall = NumHelper(1020) > 0
+triggerall = Target, Pos X <= Helper(1020), Pos X - 10
+triggerall = Facing = -1
+trigger1 = Var(0) < 5 ;MoveContact
+ignorehitpause = 1
+x = Target, Pos X + 10
+
+[State 1020, PosSet]
+type = PosSet
+triggerall = NumTarget = 0
+triggerall = NumHelper(1020) > 0
+triggerall = Enemy, Pos X >= Helper(1020), Pos X + 10
+triggerall = Facing = 1
+trigger1 = Var(0) < 5 ;MoveContact
+ignorehitpause = 1
+x = Enemy, Pos X - 10
+
+[State 1020, PosSet]
+type = PosSet
+triggerall = NumTarget = 0
+triggerall = NumHelper(1020) > 0
+triggerall = Enemy, Pos X <= Helper(1020), Pos X - 10
+triggerall = Facing = -1
+trigger1 = Var(0) < 5 ;MoveContact
+ignorehitpause = 1
+x = Enemy, Pos X + 10
+
+[State 1020, Reset]
+type = MoveHitReset
+trigger1 = HitPauseTime = 0
+
+[State 1020, 2]
+type = HitDef
+trigger1 = TimeMod = 5,0
+attr = A, SA
+damage = 50, 10
+animtype = Medium
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = S1006
+guard.sparkno = S1005
+sparkxy = -10, 0
+hitsound = S3, 1
+guardsound = S3, 0
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -5
+airguard.velocity = -2,-1
+air.type = Low
+air.velocity = -2,-2
+air.hittime = 20
+air.fall = 1
+
+[State 1020, 4]
+type = TargetState
+triggerall = MoveHit
+triggerall = !MoveGuarded
+triggerall = NumTarget > 0
+trigger1 = Target, StateNo != 9000
+trigger1 = Target, StateType != A
+trigger1 = Target, MoveType = H
+trigger1 = HitPauseTime > 0
+ignorehitpause = 1
+value = 9000
+
+[State 1020, 4]
+type = TargetState
+triggerall = MoveHit
+triggerall = !MoveGuarded
+triggerall = NumTarget > 0
+trigger1 = Target, StateNo != 9010
+trigger1 = Target, StateType = A
+trigger1 = Target, MoveType = H
+trigger1 = HitPauseTime > 0
+ignorehitpause = 1
+value = 9010
+
+[State 1020, 4]
+type = ChangeState
+triggerall = Var(0) > 1
+trigger1 = Time >= 30
+trigger2 = Root, Var(0) = 0
+trigger2 = Var(1) >= 3
+trigger3 = Root, Var(0) > 0
+trigger3 = Var(1) >= 5
+value = 1025
+
+[State 1020, Explod]
+type = RemoveExplod
+trigger1 = Root, MoveType != A
+
+[State 1020, Destroy]
+type = DestroySelf
+trigger1 = Root, MoveType != A
+
+;---------------------------------------------------------------------------
+; Beam Destroy
+[Statedef 1025]
+type = A
+movetype = A
+physics = N
+velset = 0,0
+sprpriority = 5
+anim = 1028
+ctrl = 0
+
+[State 1020, Invisible]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 1020, PosSet]
+type = PosSet
+trigger1 = NumHelper(1020) > 0
+y = Helper(1020), Pos Y
+
+;----- Beam Dissapearing -----
+;-Animated-
+[State 1020, Explod]
+type = RemoveExplod
+trigger1 = Time <= 0
+id = 1023
+
+[State 1020, Explod]
+type = Explod
+trigger1 = Time <= 0
+sprpriority = 10
+pos = 0, 0
+id = 1028
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1028
+;----------
+
+;-Resize-
+[State 1020, VarSet]
+type = null ;VarSet
+trigger1 = Time <= 0
+var(0) = 10
+
+[State 1020, VarAdd]
+type = null ;VarAdd
+trigger1 = Time > 0
+var(0) = -1
+
+[State 1020, Explod]
+type = null ;ModifyExplod
+trigger1 = 1
+scale = 1, Var(0)*.10
+id = 1023
+;----------
+;-------------------------
+
+[State 1020, Explod]
+type = RemoveExplod
+trigger1 = Root, MoveType != A
+
+[State 1020, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+trigger2 = Root, MoveType != A
+
+;---------------------------------------------------------------------------
+; Fireball Object (Air)
+[Statedef 1035]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = Root, Var(0),Root, Var(0)
+sprpriority = 5
+anim = 1035
+ctrl = 0
+
+[State 1035, 0]
+type = HitBy
+trigger1 = 1
+value = SCA, AP
+time = 1
+
+[State 1035, 0]
+type = HitOverride
+trigger1 = 1
+attr = SCA, AP
+stateno = 1011
+time = 1
+
+[State 1035, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 20
+channel = 0
+
+[State 1035, Flame]
+type = Explod
+trigger1 = MoveHit = 1
+ignorehitpause = 1
+persistent = 0
+anim = 500
+id = 500
+postype = p2
+pos = 0,0
+bindtime = -1
+sprpriority = 15
+ownpal = 1
+shadow = 100,100,100
+
+[State 1035, HitDef]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SP
+damage = 100, 10
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 0, 5
+sparkno = 2
+sparkxy = -10, 0
+hitsound = S2, 15
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+ground.velocity = -5,-5
+airguard.velocity = -2,-2
+air.type = High
+air.velocity = -4,-4
+air.hittime = 15
+palfx.time = 25
+palfx.add = 200,100,0
+palfx.color = 0
+air.fall = 1
+fall = 1
+
+[State 1035, State]
+type = ChangeState
+trigger1 = MoveContact
+value = 1011
+
+[State 1035, State]
+type = ChangeState
+trigger1 = Pos Y >= 0
+value = 1036
+
+;---------------------------------------------------------------------------
+; Air Fireball Destroy
+[Statedef 1036]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 0,0
+sprpriority = 5
+anim = 1036
+ctrl = 0
+
+[State 1035, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1035, PosSet]
+type = PosSet
+trigger1 = Pos Y >= 0
+y = 0
+
+[State 1035, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 21
+channel = 1
+
+[State 1035, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+
+;---------------------------------------------------------------------------
+; Super Beam Front
+[Statedef 1060]
+type = A
+movetype = A
+physics = N
+velset = 0,0
+sprpriority = 5
+anim = 1060
+ctrl = 0
+
+[State 1060, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1060, BindToRoot]
+type = BindToRoot
+trigger1 = 1
+facing = 1
+pos = 90,-40
+time = 1
+
+[State 1060, Invisible]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 1060, 4]
+type = Helper
+trigger1 = Time <= 0
+helpertype = normal
+ignorehitpause = 1
+name = "Beam"
+id = 1062
+facing = 1
+pos = -10,0
+postype = P1
+stateno = 1063
+keyctrl = 0
+ownpal = 1
+size.ground.back = 0
+size.ground.front = 0
+size.air.back = 0
+size.air.front = 0
+
+[State 1060, Explod]
+type = Explod
+trigger1 = Time <= 0
+sprpriority = 10
+pos = 0, 0
+id = 1060
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1060
+
+;----- Beam Stretching -----
+[State 1060, Explod]
+type = Explod
+trigger1 = Facing = 1
+trigger1 = Time <= 0
+sprpriority = 9
+pos = 0, 0
+id = 1061
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1061
+
+[State 1060, Explod]
+type = Explod
+trigger1 = Facing = -1
+trigger1 = Time <= 0
+sprpriority = 9
+pos = 0, 0
+id = 1061
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1062
+
+[State 1060, Explod]
+type = ModifyExplod
+triggerall = NumHelper(1062) > 0
+triggerall = NumHelper(1072) > 0
+trigger1 = Helper(1072), Var(0) >= 5
+trigger2 = Helper(1072), Vel X != 0
+scale = Helper(1062), ParentDist X - 10,1
+id = 1061
+
+[State 1060, Explod]
+type = ModifyExplod
+triggerall = Time > 0
+triggerall = NumHelper(1062) > 0
+triggerall = NumHelper(1072) > 0
+triggerall = ifelse(facing = -1, Helper(1062), Pos X <= Pos X, Helper(1062), Pos X >= Pos X)
+trigger1 = Helper(1072), Var(0) < 5
+trigger1 = Helper(1072), Vel X = 0
+scale = Helper(1062), ParentDist X - 5,1
+id = 1061
+
+[State 1060, Explod]
+type = ModifyExplod
+triggerall = Time > 2
+triggerall = NumHelper(1062) > 0
+trigger1 = ifelse(facing = -1, Helper(1062), Pos X > Pos X, Helper(1062), Pos X < Pos X)
+scale = 1,1
+id = 1061
+;-------------------------
+
+;----- Beam Dissapearing -----
+;-Animated-
+[State 1060, Explod]
+type = RemoveExplod
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+id = 1060
+
+[State 1060, Explod]
+type = RemoveExplod
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+id = 1061
+
+[State 1060, Explod]
+type = Explod
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+sprpriority = 5
+persistent = 0
+pos = 0, 0
+id = 1065
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1065
+
+[State 1060, Explod]
+type = Explod
+triggerall = Facing = 1
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+sprpriority = 4
+persistent = 0
+pos = 0, 0
+id = 1066
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1066
+
+[State 1060, Explod]
+type = Explod
+triggerall = Facing = -1
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+sprpriority = 4
+persistent = 0
+pos = 0, 0
+id = 1066
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1067
+
+[State 1060, Explod]
+type = ModifyExplod
+trigger1 = NumHelper(1062) > 0
+trigger1 = Helper(1062), ParentDist X <= 0 
+scale = Helper(1062), ParentDist X - 2,1
+id = 1066
+;----------
+
+;-Resize-
+[State 1060, Explod]
+type = null ;ModifyExplod
+trigger1 = NumHelper(1062) > 0
+trigger1 = Helper(1062), StateNo = 1065
+scale = 1, (Helper(1062),Var(0)-1)*.10
+id = 1060
+
+[State 1060, Explod]
+type = null ;ModifyExplod
+trigger1 = NumHelper(1062) > 0
+trigger1 = Helper(1062), StateNo = 1065
+scale = Helper(1062),ParentDist X - 5, (Helper(1062),Var(0)-1)*.10
+id = 1061
+;----------
+;-------------------------
+
+[State 1060, Explod]
+type = RemoveExplod
+trigger1 = Root, MoveType != A
+
+[State 1060, Destroy]
+type = DestroySelf
+triggerall = Time > 0
+trigger1 = NumHelper(1062) = 0
+trigger2 = NumHelper(1062) > 0
+trigger2 = Helper(1062), StateNo = 1065
+trigger2 = Helper(1062), AnimTime = 0
+trigger3 = Root, MoveType != A
+
+;---------------------------------------------------------------------------
+; Beam Shot
+[Statedef 1063]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 0,0
+sprpriority = 5
+anim = 1064
+ctrl = 0
+
+[State 1060, 0]
+type = ChangeAnim
+triggerall = NumHelper(1072) > 0
+trigger1 = Helper(1072), MoveContact
+trigger2 = Helper(1072), Var(0) < 8
+ignorehitpause = 1
+value = Anim
+elem = 1
+
+[State 1060, 0]
+type = ChangeAnim
+triggerall = NumHelper(1072) > 0
+trigger1 = Helper(1072), BackEdgeBodyDist <= -100
+trigger2 = Helper(1072), FrontEdgeBodyDist <= -100
+ignorehitpause = 1
+value = Anim
+elem = AnimElemNo(0) - 1
+
+[State 1060, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1060, Invisible]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 1060, PosSet]
+type = PosSet
+trigger1 = NumHelper(1060) > 0
+ignorehitpause = 1
+y = Helper(1060), Pos Y
+
+[State 1060, Explod]
+type = Explod
+trigger1 = Time <= 0
+sprpriority = 10
+pos = 0, 0
+id = 1063
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1063
+
+[State 1060, PosSet]
+type = PosSet
+trigger1 = NumHelper(1072) > 0
+ignorehitpause = 1
+x = Helper(1072), Pos X
+
+[State 1060, 4]
+type = ChangeState
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+value = 1065
+
+[State 1060, Explod]
+type = RemoveExplod
+trigger1 = Root, MoveType != A
+
+[State 1060, Destroy]
+type = DestroySelf
+trigger1 = Root, MoveType != A
+
+;---------------------------------------------------------------------------
+; Beam Destroy
+[Statedef 1065]
+type = A
+movetype = A
+physics = N
+velset = 0,0
+sprpriority = 5
+anim = 1068
+ctrl = 0
+
+[State 1060, Invisible]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 1060, PosSet]
+type = PosSet
+trigger1 = NumHelper(1060) > 0
+y = Helper(1060), Pos Y
+
+;----- Beam Dissapearing -----
+;-Animated-
+[State 1060, Explod]
+type = RemoveExplod
+trigger1 = Time <= 0
+id = 1063
+
+[State 1060, Explod]
+type = Explod
+trigger1 = Time <= 0
+sprpriority = 5
+pos = 0, 0
+id = 1068
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1068
+;----------
+
+;-Resize-
+[State 1060, VarSet]
+type = null ;VarSet
+trigger1 = Time <= 0
+var(0) = 10
+
+[State 1060, VarAdd]
+type = null ;VarAdd
+trigger1 = Time > 0
+var(0) = -1
+
+[State 1060, Explod]
+type = null ;ModifyExplod
+trigger1 = 1
+scale = 1, Var(0)*.10
+id = 1063
+;----------
+;-------------------------
+
+[State 1060, Explod]
+type = RemoveExplod
+trigger1 = Root, MoveType != A
+
+[State 1060, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+trigger2 = Root, MoveType != A
+
+;---------------------------------------------------------------------------
+; Super Beam Front
+[Statedef 1070]
+type = A
+movetype = A
+physics = N
+velset = 0,0
+sprpriority = 5
+anim = 1070
+ctrl = 0
+
+[State 1070, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1070, BindToRoot]
+type = BindToRoot
+trigger1 = 1
+facing = 1
+pos = 100,-70
+time = 1
+
+[State 1070, Invisible]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 1070, 4]
+type = Helper
+trigger1 = Time <= 0
+helpertype = normal
+ignorehitpause = 1
+name = "Beam"
+id = 1072
+facing = 1
+pos = -10,0
+postype = P1
+stateno = 1073
+keyctrl = 0
+ownpal = 1
+size.ground.back = 0
+size.ground.front = 0
+size.air.back = 0
+size.air.front = 0
+
+[State 1070, Explod]
+type = Explod
+trigger1 = Time <= 0
+sprpriority = 5
+pos = 0, 0
+id = 1070
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1070
+
+;----- Beam Stretching -----
+[State 1070, Explod]
+type = Explod
+trigger1 = Facing = 1
+trigger1 = Time <= 0
+sprpriority = 4
+pos = 0, 0
+id = 1071
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1071
+
+[State 1070, Explod]
+type = Explod
+trigger1 = Facing = -1
+trigger1 = Time <= 0
+sprpriority = 4
+pos = 0, 0
+id = 1071
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1072
+
+[State 1070, Explod]
+type = ModifyExplod
+triggerall = NumHelper(1072) > 0
+trigger1 = Helper(1072), Var(0) >= 8
+trigger2 = Helper(1072), Vel X != 0
+scale = Helper(1072), ParentDist X - 10,1
+id = 1071
+
+[State 1070, Explod]
+type = ModifyExplod
+triggerall = Time > 0
+triggerall = NumHelper(1072) > 0
+triggerall = ifelse(facing = -1, Helper(1072), Pos X <= Pos X, Helper(1072), Pos X >= Pos X)
+trigger1 = Helper(1072), Var(0) < 8
+trigger1 = Helper(1072), Vel X = 0
+scale = Helper(1072), ParentDist X - 5,1
+id = 1071
+
+[State 1070, Explod]
+type = ModifyExplod
+triggerall = Time >= 2
+triggerall = NumHelper(1072) > 0
+trigger1 = ifelse(facing = -1, Helper(1072), Pos X > Pos X, Helper(1072), Pos X < Pos X)
+scale = 1,1
+id = 1071
+;-------------------------
+
+;----- Beam Dissapearing -----
+;-Animated-
+[State 1070, Explod]
+type = RemoveExplod
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+id = 1070
+
+[State 1070, Explod]
+type = RemoveExplod
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+id = 1071
+
+[State 1070, Explod]
+type = Explod
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+sprpriority = 5
+persistent = 0
+pos = 0, 0
+id = 1075
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1075
+
+[State 1070, Explod]
+type = Explod
+triggerall = Facing = 1
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+sprpriority = 4
+persistent = 0
+pos = 0, 0
+id = 1076
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1076
+
+[State 1070, Explod]
+type = Explod
+triggerall = Facing = -1
+triggerall = NumHelper(1072) > 0
+triggerall = Helper(1072), StateNo = 1073
+triggerall = Helper(1072), Var(0) >= 4
+trigger1 = Helper(1072), StateTime >= 40
+sprpriority = 4
+persistent = 0
+pos = 0, 0
+id = 1076
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1077
+
+[State 1070, Explod]
+type = ModifyExplod
+trigger1 = NumHelper(1072) > 0
+trigger1 = Helper(1072), ParentDist X <= 0 
+scale = Helper(1072), ParentDist X - 2,1
+id = 1076
+;----------
+
+;-Resize-
+[State 1070, Explod]
+type = null ;ModifyExplod
+trigger1 = NumHelper(1072) > 0
+trigger1 = Helper(1072), StateNo = 1075
+scale = 1, (Helper(1072),Var(0)-1)*.10
+id = 1070
+
+[State 1070, Explod]
+type = null ;ModifyExplod
+trigger1 = NumHelper(1072) > 0
+trigger1 = Helper(1072), StateNo = 1075
+scale = Helper(1072),ParentDist X - 5, (Helper(1072),Var(0)-1)*.10
+id = 1071
+;----------
+;-------------------------
+
+[State 1070, Explod]
+type = RemoveExplod
+trigger1 = Root, MoveType != A
+
+[State 1070, Destroy]
+type = DestroySelf
+triggerall = Time > 0
+trigger1 = NumHelper(1072) = 0
+trigger2 = NumHelper(1072) > 0
+trigger2 = Helper(1072), StateNo = 1075
+trigger2 = Helper(1072), AnimTime = 0
+trigger3 = Root, MoveType != A
+
+;---------------------------------------------------------------------------
+; Beam Shot
+[Statedef 1073]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 10,0
+sprpriority = 5
+anim = 1064
+ctrl = 0
+
+[State 1070, 0]
+type = ChangeAnim
+trigger1 = MoveContact
+trigger2 = Var(0) < 8
+ignorehitpause = 1
+value = Anim
+elem = 1
+
+[State 1070, 0]
+type = ChangeAnim
+trigger1 = BackEdgeBodyDist <= -100
+trigger2 = FrontEdgeBodyDist <= -100
+ignorehitpause = 1
+value = Anim
+elem = AnimElemNo(0) - 1
+
+[State 1070, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1070, Invisible]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 1070, PosSet]
+type = PosSet
+trigger1 = NumHelper(1070) > 0
+ignorehitpause = 1
+y = Helper(1070), Pos Y
+
+[State 1070, Explod]
+type = Explod
+trigger1 = Time <= 0
+sprpriority = 5
+pos = 0, 0
+id = 1073
+postype = p1
+bindtime = -1
+removetime = -1
+shadow = 100,100,100
+anim = 1073
+
+[State 1070, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(0) = 8
+
+[State 1070, VarSet]
+type = VarSet
+trigger1 = MoveContact
+ignorehitpause = 1
+var(0) = 0
+
+[State 1070, VarAdd]
+type = VarAdd
+trigger1 = MoveContact = 0
+ignorehitpause = 1
+var(0) = 1
+
+[State 1070, VelSet]
+type = VelSet
+trigger1 = Var(0) >= 9
+x = 10
+
+[State 1070, VelSet]
+type = VelSet
+trigger1 = MoveContact
+trigger2 = BackEdgeBodyDist <= -100
+trigger3 = FrontEdgeBodyDist <= -100
+ignorehitpause = 1
+x = 0
+
+[State 1070, PosSet]
+type = PosSet
+triggerall = Time > 0
+triggerall = NumHelper(1070) > 0
+triggerall = NumHelper(1072) > 0
+trigger1 = Facing = 1
+trigger1 = Pos X < Helper(1070), Pos X
+trigger2 = Facing = -1
+trigger2 = Pos X > Helper(1070), Pos X
+trigger3 = Facing = 1
+trigger3 = NumTarget > 0
+trigger3 = Target, Pos X < Helper(1072), Pos X
+trigger3 = Var(0) < 8 ;MoveContact
+trigger4 = Facing = -1
+trigger4 = NumTarget > 0
+trigger4 = Target, Pos X > Helper(1072), Pos X
+trigger4 = Var(0) < 8 ;MoveContact
+trigger5 = Facing = 1
+trigger5 = NumTarget = 0
+trigger5 = Enemy, Pos X < Helper(1072), Pos X
+trigger5 = Var(0) < 8 ;MoveContact
+trigger6 = Facing = -1
+trigger6 = NumTarget = 0
+trigger6 = Enemy, Pos X > Helper(1072), Pos X
+trigger6 = Var(0) < 8 ;MoveContact
+ignorehitpause = 1
+x = Helper(1070), Pos X
+
+[State 1070, PosSet]
+type = PosSet
+triggerall = NumTarget > 0
+triggerall = NumHelper(1070) > 0
+triggerall = Target, Pos X >= Helper(1070), Pos X + 50
+triggerall = Facing = 1
+trigger1 = Var(0) < 8 ;MoveContact
+ignorehitpause = 1
+x = Target, Pos X - 50
+
+[State 1070, PosSet]
+type = PosSet
+triggerall = NumTarget > 0
+triggerall = NumHelper(1070) > 0
+triggerall = Target, Pos X <= Helper(1070), Pos X - 50
+triggerall = Facing = -1
+trigger1 = Var(0) < 8 ;MoveContact
+ignorehitpause = 1
+x = Target, Pos X + 50
+
+[State 1070, PosSet]
+type = PosSet
+triggerall = NumTarget = 0
+triggerall = NumHelper(1070) > 0
+triggerall = Enemy, Pos X >= Helper(1070), Pos X + 50
+triggerall = Facing = 1
+trigger1 = Var(0) < 8 ;MoveContact
+ignorehitpause = 1
+x = Enemy, Pos X - 50
+
+[State 1070, PosSet]
+type = PosSet
+triggerall = NumTarget = 0
+triggerall = NumHelper(1070) > 0
+triggerall = Enemy, Pos X <= Helper(1070), Pos X - 50
+triggerall = Facing = -1
+trigger1 = Var(0) < 8 ;MoveContact
+ignorehitpause = 1
+x = Enemy, Pos X + 50
+
+[State 1070, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1070, Flame]
+type = Explod
+trigger1 = MoveHit
+ignorehitpause = 1
+anim = 500
+id = 500
+postype = p2
+pos = 0,0
+bindtime = -1
+sprpriority = 15
+ownpal = 1
+shadow = 100,100,100
+
+[State 1070, Reset]
+type = MoveHitReset
+trigger1 = Var(0) <= 0
+ignorehitpause = 1
+
+[State 1070, 2]
+type = HitDef
+trigger1 = TimeMod = 5,0
+attr = A, HA
+damage = 50, 10
+animtype = Medium
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = 1
+sparkxy = -10, 0
+hitsound = S2, 15
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 25
+ground.velocity = -5
+airguard.velocity = -2,-1
+air.type = Low
+air.velocity = -2,-2
+air.hittime = 20
+palfx.time = 25
+palfx.add = 200,100,0
+palfx.color = 0
+air.fall = 1
+
+[State 1070, 4]
+type = ChangeState
+triggerall = Var(0) >= 5
+trigger1 = Time >= 40
+value = 1075
+
+[State 1070, Explod]
+type = RemoveExplod
+trigger1 = Root, MoveType != A
+
+[State 1070, Destroy]
+type = DestroySelf
+trigger1 = Root, MoveType != A
+
+;---------------------------------------------------------------------------
+; Beam Destroy
+[Statedef 1075]
+type = A
+movetype = A
+physics = N
+velset = 0,0
+sprpriority = 5
+anim = 1078
+ctrl = 0
+
+[State 1070, Invisible]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 1070, PosSet]
+type = PosSet
+trigger1 = NumHelper(1070) > 0
+y = Helper(1070), Pos Y
+
+;----- Beam Dissapearing -----
+;-Animated-
+[State 1070, Explod]
+type = RemoveExplod
+trigger1 = Time <= 0
+id = 1073
+
+[State 1070, Explod]
+type = Explod
+trigger1 = Time <= 0
+sprpriority = 5
+pos = 0, 0
+id = 1078
+postype = p1
+bindtime = -1
+shadow = 100,100,100
+anim = 1078
+;----------
+
+;-Resize-
+[State 1070, VarSet]
+type = null ;VarSet
+trigger1 = Time <= 0
+var(0) = 10
+
+[State 1070, VarAdd]
+type = null ;VarAdd
+trigger1 = Time > 0
+var(0) = -1
+
+[State 1070, Explod]
+type = null ;ModifyExplod
+trigger1 = 1
+scale = 1, Var(0)*.10
+id = 1073
+;----------
+;-------------------------
+
+[State 1070, Explod]
+type = RemoveExplod
+trigger1 = Root, MoveType != A
+
+[State 1070, Destroy]
+type = DestroySelf
+trigger1 = AnimTime = 0
+trigger2 = Root, MoveType != A
+
+;---------------------------------------------------------------------------
+; Explosion Wave
+[Statedef 5355]
+sprpriority = 0
+velset = 0,0
+anim = 5355
+
+[State 5355, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 5355, 1]
+type = AssertSpecial
+trigger1 = 1
+flag = Invisible
+
+[State 5355, 2]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State 5355, 3]
+type = Explod
+trigger1 = Time = 0
+ignorehitpause = 1
+persistent = 0
+anim = 5355
+id = 5355
+postype = p1
+pos = 0,0
+sprpriority = 0
+ownpal = 1
+
+[State 5355, 4]
+type = DestroySelf
+trigger1 = Time > 0
+
+;---------------------------------------------------------------------------
+; Pieces
+[Statedef 5360]
+movetype= H
+physics = N
+velset = 0,-5
+anim = 5360
+
+[State 5360, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 5360, 1]
+type = AssertSpecial
+trigger1 = TimeMod = 2,1
+flag = Invisible
+
+[State 5360, 2]
+type = VelAdd
+trigger1 = Vel Y < 5
+y = .5
+
+[State 5360, 3]
+type = DestroySelf
+trigger1 = Vel Y >= 0
+trigger1 = Pos Y >= 0
+
+;---------------------------------------------------------------------------
+; Body Part
+[Statedef 6000]
+type = A
+movetype = I
+physics = N
+velset = 3,-8
+anim = 6000
+
+[State 6000, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 6000, 2]
+type = VelAdd
+trigger1 = 1
+y = .4
+
+[State 6000, 5]
+type = ChangeState
+trigger1 = Vel Y >= 0
+trigger1 = Pos Y >= 0
+value = 6006
+
+;---------------------------------------------------------------------------
+; Arm Part
+[Statedef 6001]
+type = A
+movetype = I
+physics = N
+velset = -2,-6
+anim = 6001
+
+[State 6001, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 6001, 2]
+type = VelAdd
+trigger1 = 1
+y = .35
+
+[State 6001, 5]
+type = ChangeState
+trigger1 = Vel Y >= 0
+trigger1 = Pos Y >= 0
+value = 6006
+
+;---------------------------------------------------------------------------
+; Arm Part
+[Statedef 6002]
+type = A
+movetype = I
+physics = N
+velset = 2,-6
+anim = 6002
+
+[State 6002, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 6002, 2]
+type = VelAdd
+trigger1 = 1
+y = .3
+
+[State 6002, 5]
+type = ChangeState
+trigger1 = Vel Y >= 0
+trigger1 = Pos Y >= 0
+value = 6006
+
+;---------------------------------------------------------------------------
+; Leg Part
+[Statedef 6003]
+type = A
+movetype = I
+physics = N
+velset = -1,-4
+anim = 6003
+
+[State 6003, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 6003, 2]
+type = VelAdd
+trigger1 = 1
+y = .25
+
+[State 6003, 5]
+type = ChangeState
+trigger1 = Vel Y >= 0
+trigger1 = Pos Y >= 0
+value = 6006
+
+;---------------------------------------------------------------------------
+; Leg Part
+[Statedef 6004]
+type = A
+movetype = I
+physics = N
+velset = 1,-4
+anim = 6004
+
+[State 6004, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 6004, 2]
+type = VelAdd
+trigger1 = 1
+y = .2
+
+[State 6004, 5]
+type = ChangeState
+trigger1 = Vel Y >= 0
+trigger1 = Pos Y >= 0
+value = 6006
+
+;---------------------------------------------------------------------------
+; Player Ship
+[Statedef 6005]
+movetype= H
+physics = N
+velset = 0,-5
+anim = 6005
+
+[State 6010, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 6010, 0]
+type = EnvColor
+trigger1 = Time <= 10
+trigger1 = TimeMod = 2,0
+value = 240,240,240
+ignorehitpause = 1
+persistent = 1
+time = 1
+
+[State 6010, 1]
+type = Turn
+trigger1 = Time <= 0
+trigger1 = P2Dist X < 0
+
+[State 6010, 2]
+type = VelAdd
+trigger1 = Vel Y < 3
+y = .2
+
+[State 6010, 3]
+type = VelSet
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= -50
+y = 0
+
+[State 6010, 4]
+type = PosSet
+trigger1 = Pos Y > -50
+y = -50
+
+;---------------------------------------------------------------------------
+; Parts Hit Ground
+[Statedef 6006]
+type = A
+movetype = I
+physics = N
+
+[State 6006, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 6006, 1]
+type = AssertSpecial
+trigger1 = TimeMod = 2,0
+flag = Invisible
+
+[State 6006, 2]
+type = VelSet
+trigger1 = Time = 0
+x = Vel X / 2
+y = -Vel Y / 2
+
+[State 6006, 3]
+type = VelAdd
+trigger1 = Time > 0
+y = .2
+
+[State 6006, 5]
+type = DestroySelf
+trigger1 = Vel Y >= 0
+trigger1 = Pos Y >= 0
+
+;---------------------------------------------------------------------------

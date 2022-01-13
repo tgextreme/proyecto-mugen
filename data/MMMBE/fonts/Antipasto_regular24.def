@@ -1,0 +1,12 @@
+[FNT v2]
+fntversion = 2,00
+name = "Antipasto Regular"
+author = "Microsoft"
+
+[Def]
+Type = truetype
+Size = 12,24
+Spacing = 1,1
+Offset = 0,0
+File = Antipasto_regular.ttf
+Blend = 1

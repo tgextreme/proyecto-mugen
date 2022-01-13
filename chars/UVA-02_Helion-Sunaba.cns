@@ -1,0 +1,26 @@
+;---------------------------------------------------------------------------
+; パワードギアの技
+;---------------------------------------------------------------------------
+; 空中逃げの動作
+[Statedef 5800]
+type    = L
+movetype= I
+physics = N
+ctrl = 0
+anim = 5800
+
+[State 5122, 0]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1000, 0]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200]
+type = Velset
+trigger1 = time <= 0
+y= -2

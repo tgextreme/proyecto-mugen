@@ -1,0 +1,13 @@
+[FNT v2]
+fntversion = 2,00
+name = "menu"
+
+[Info]
+Name = "MMMBE: Menu"
+
+[Def]
+Type = bitmap
+Size = 960,720
+Spacing = 0,1
+Offset = 0,1
+File = menu.sff

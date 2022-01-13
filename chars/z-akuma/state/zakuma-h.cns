@@ -1,0 +1,1860 @@
+; Zero-Akuma Hyper Attacks
+;---------------------------------------------------------------------------
+; Shun Goku Satsu Dash
+[Statedef 320]
+type = S
+movetype = A
+physics = N
+juggle  = 5
+velset = 0,0
+anim = 310
+ctrl = 0
+
+[State 320, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 320, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(0) = 0
+
+[State 320, VarSet]
+type = VarSet
+trigger1 = MoveHit
+ignorehitpause = 1
+var(0) = 1
+
+[State 320, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(10) = 1
+
+[State 320, Anim]
+type = ChangeAnim
+trigger1 = Time <= 30
+value = 310
+elem = 2
+
+[State 320, EnvColor]
+type = EnvColor
+trigger1 = Time <= 30
+trigger1 = TimeMod = 2,0
+value = 240,240,240
+ignorehitpause = 1
+persistent = 1
+time = 1
+
+[State 320, SuperPause]
+type = SuperPause
+trigger1 = Time <= 0
+pos = 40, -80
+anim = S955
+time = 30
+movetime = 30
+sound = S20, 10
+poweradd = 0
+darken = 0
+
+[State 320, PowerSet]
+type = PowerSet
+trigger1 = Time <= 30
+value = 999
+
+[State 320, NotHitBy]
+type = NotHitBy
+trigger1 = Anim = 310
+trigger1 = AnimElem = 3, < 0
+value = SCA
+time = 1
+
+[State 320, PlaySnd]
+type = PlaySnd
+trigger1 = Anim = 310
+trigger1 = AnimElem = 3
+value = 0, 10
+channel = 0
+
+[State 320, VelSet]
+type = VelSet
+trigger1 = Anim = 310
+trigger1 = AnimElem = 3
+x = 10
+
+[State 320, VelMul]
+type = VelMul
+trigger1 = Time > 30
+trigger1 = TimeMod = 2,0
+x = 0.9
+
+[State 320, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 320, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 320, HitDef]
+type = HitDef
+triggerall = Anim = 310
+trigger1 = AnimElem = 3
+attr = S, HA
+damage = 10, 0
+animtype = Heavy
+hitflag = MA
+guardflag = MA
+priority = 3, Hit
+pausetime = 10, 10
+sparkno = 2
+sparkxy = -10, -65
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = Low
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = 0
+airguard.velocity = -2,0
+air.type = Low
+air.velocity = -4,-1
+air.hittime = 10
+kill = 0
+
+[State 320, State]
+type = ChangeState
+trigger1 = Var(0) > 0
+value = 2000
+
+[State 320, 0]
+type = ChangeAnim
+trigger1 = Time >= 80
+trigger1 = Anim = 310
+trigger1 = AnimTime = 0
+value = 311
+
+[State 320, 0]
+type = ChangeAnim
+trigger1 = Anim = 311
+trigger1 = AnimTime = 0
+value = 312
+
+[State 320, VelSet]
+type = VelSet
+trigger1 = Anim = 312
+x = 0
+
+[State 320, 4]
+type = ChangeState
+trigger1 = Anim = 312
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Super Air Fireball
+[Statedef 1040]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+velset = 0,0
+ctrl = 0
+anim = 600
+
+[State 1040, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1040, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(0) = 0
+
+[State 1040, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(10) = 1
+
+[State 1040, Anim]
+type = ChangeAnim
+trigger1 = Time <= 30
+value = 600
+elem = 1
+
+[State 1040, EnvColor]
+type = EnvColor
+trigger1 = Time <= 30
+trigger1 = TimeMod = 2,0
+value = 240,240,240
+ignorehitpause = 1
+persistent = 1
+time = 1
+
+[State 1040, SuperPause]
+type = SuperPause
+trigger1 = Time <= 0
+pos = -20, -75
+anim = S955
+time = 30
+movetime = 30
+sound = S20, 10
+poweradd = 0
+darken = 0
+
+[State 1040, PowerSet]
+type = PowerSet
+trigger1 = Time <= 30
+value = 999
+
+[State 1040, NotHitBy]
+type = NotHitBy
+trigger1 = AnimElem = 3, < 0
+value = SCA
+time = 1
+
+[State 1040, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = Var(0) < 8
+trigger2 = AnimElem = 4, 10
+value = 1, 25
+channel = 1
+
+[State 1040, Helper]
+type = Helper
+trigger1 = AnimElem = 3
+trigger2 = Var(0) < 8
+trigger2 = AnimElem = 4, 10
+helpertype = normal
+ignorehitpause = 1
+name = "Rocket"
+id = 620
+facing = 1
+pos = 110, -40
+postype = P1
+stateno = 620
+keyctrl = 0
+ownpal = 1
+size.ground.back = 0
+size.ground.front = 0
+size.air.back = 0
+size.air.front = 0
+
+[State 1040, VarAdd]
+type = VarAdd
+trigger1 = AnimElem = 4
+var(0) = 1
+
+[State 1040, 5]
+type = ChangeAnim
+trigger1 = Var(0) < 8
+trigger1 = AnimElem = 4, 10
+value = Anim
+elem = 3
+
+[State 1040, 5]
+type = ChangeAnim
+trigger1 = Var(0) >= 8
+trigger1 = AnimElem = 4
+value = Anim
+elem = 5
+
+[State 1040, VelSet]
+type = VelSet
+trigger1 = AnimElem = 5, < 10
+x = 0
+y = 0
+
+;---------------------------------------------------------------------------
+; Super Beam
+[Statedef 1050]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+anim = 1000
+ctrl = 0
+
+[State 1050, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1050, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(10) = 1
+
+[State 1050, 0]
+type = ChangeAnim
+trigger1 = Time <= 30
+value = 1000
+elem = 3
+
+[State 1050, EnvColor]
+type = EnvColor
+trigger1 = Time <= 30
+trigger1 = TimeMod = 2,0
+value = 240,240,240
+ignorehitpause = 1
+persistent = 1
+time = 1
+
+[State 1050, SuperPause]
+type = SuperPause
+trigger1 = Time <= 0
+pos = -70, -65
+anim = S955
+time = 30
+movetime = 30
+sound = S20, 10
+poweradd = 0
+darken = 0
+
+[State 1050, PowerSet]
+type = PowerSet
+trigger1 = Time <= 30
+value = 999
+
+[State 1050, NotHitBy]
+type = NotHitBy
+trigger1 = Time < 40
+value = SCA
+time = 1
+
+[State 1050, 1]
+type = Helper
+trigger1 = Time >= 40
+trigger1 = Anim = 1000
+trigger1 = AnimTime = 0
+helpertype = normal
+ignorehitpause = 1
+name = "Beam"
+id = 1060
+facing = 1
+pos = 90,-40
+postype = P1
+stateno = 1060
+keyctrl = 0
+ownpal = 1
+size.ground.back = 0
+size.ground.front = 0
+size.air.back = 0
+size.air.front = 0
+
+[State 1050, 1]
+type = Helper
+trigger1 = Time >= 40
+trigger1 = Anim = 1000
+trigger1 = AnimTime = 0
+helpertype = normal
+ignorehitpause = 1
+name = "Beam"
+id = 1070
+facing = 1
+pos = 100,-70
+postype = P1
+stateno = 1070
+keyctrl = 0
+ownpal = 1
+size.ground.back = 0
+size.ground.front = 0
+size.air.back = 0
+size.air.front = 0
+
+[State 1050, 2]
+type = ChangeAnim
+trigger1 = Time >= 40
+trigger1 = Anim = 1000
+trigger1 = AnimTime = 0
+trigger2 = NumHelper(1060) > 0
+trigger3 = NumHelper(1070) > 0
+value = 1001
+
+[State 1050, 2]
+type = ChangeAnim
+trigger1 = Anim = 1001
+trigger1 = AnimElem = 2,5
+value = 1001
+elem = 3
+
+[State 1050, 5]
+type = ChangeState
+trigger1 = Anim = 1001
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Super Hurricane Kick
+[Statedef 1105]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 0,0
+anim = 1105
+ctrl = 0
+
+[State 1105, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1105, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(10) = 1
+
+[State 1105, 0]
+type = ChangeAnim
+trigger1 = Time <= 30
+value = 1105
+elem = 1
+
+[State 1105, EnvColor]
+type = EnvColor
+trigger1 = Time <= 30
+trigger1 = TimeMod = 2,0
+value = 240,240,240
+ignorehitpause = 1
+persistent = 1
+time = 1
+
+[State 1105, SuperPause]
+type = SuperPause
+trigger1 = Time <= 0
+pos = 15, -80
+anim = S955
+time = 30
+movetime = 30
+sound = S20, 10
+poweradd = 0
+darken = 0
+
+[State 1105, PowerSet]
+type = PowerSet
+trigger1 = Time <= 30
+value = 999
+
+[State 1105, NotHitBy]
+type = NotHitBy
+trigger1 = Anim = 1105
+trigger1 = Time < 35
+value = SCA
+time = 1
+
+[State 1105, PlaySnd]
+type = PlaySnd
+triggerall = Anim = 1105
+trigger1 = AnimElem = 2
+trigger2 = AnimTime = 0
+value = 1, 1
+channel = 1
+
+[State 1105, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1105, VelSet]
+type = VelSet
+trigger1 = Time < 35
+trigger1 = Anim = 1105
+trigger1 = AnimElem = 2
+y = -4
+
+[State 1105, VelSet]
+type = VelSet
+trigger1 = Time < 40
+trigger1 = Anim = 1105
+trigger1 = AnimTime = 0
+y = 0
+
+[State 1105, Explod]
+type = Explod
+trigger1 = Anim = 1105
+trigger1 = AnimTime = 0
+anim = 1120
+id = 1120
+pos = 10,20
+facing = 1
+postype = p1
+bindtime = -1
+persistent = 0
+removetime = -1
+sprpriority = -1
+ownpal = 1
+
+[State 1105, Explod]
+type = Explod
+trigger1 = Anim = 1105
+trigger1 = AnimTime = 0
+anim = 1120
+id = 1120
+pos = -10,20
+facing = -1
+postype = p1
+bindtime = -1
+persistent = 0
+removetime = -1
+sprpriority = -2
+ownpal = 1
+
+[State 1105, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1105, HitDef]
+type = HitDef
+triggerall = Time > 32
+triggerall = Time < 70
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 5
+attr = A, HA
+damage = 40, 10
+animtype = Medium
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = 2
+sparkxy = -10, -60
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = 0
+airguard.velocity = -2,-1
+air.type = Low
+air.velocity = -2,-2
+air.hittime = 10
+air.fall = 1
+
+[State 1105, HitDef]
+type = HitDef
+triggerall = Time >= 70
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 5
+attr = A, HA
+damage = 50, 10
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = 2
+sparkxy = -10, -60
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 20
+ground.velocity = -10,-4
+airguard.velocity = -5,-2
+air.type = Low
+air.velocity = -10,-4
+air.hittime = 20
+air.fall = 1
+fall = 1
+
+[State 1105, Explod]
+type = RemoveExplod
+trigger1 = Time > 72
+trigger1 = Anim = 1105
+trigger1 = AnimElem = 5
+id = 1120
+
+[State 1105, Explod]
+type = Explod
+trigger1 = Time > 72
+trigger1 = Anim = 1105
+trigger1 = AnimElem = 5
+anim = 1115
+id = 1115
+pos = 0,20
+facing = 1
+postype = p1
+persistent = 0
+sprpriority = -1
+ownpal = 1
+
+[State 1105, Explod]
+type = Explod
+trigger1 = Time > 72
+trigger1 = Anim = 1105
+trigger1 = AnimElem = 5
+anim = 1115
+id = 1115
+pos = 0,20
+facing = -1
+postype = p1
+persistent = 0
+sprpriority = -2
+ownpal = 1
+
+[State 1105, VelSet]
+type = VelSet
+trigger1 = Time > 72
+trigger1 = Anim = 1105
+trigger1 = AnimTime = 0
+y = -6
+
+[State 1105, Anim]
+type = ChangeAnim
+trigger1 = Time > 72
+trigger1 = Anim = 1105
+trigger1 = AnimTime = 0
+value = 1101
+
+[State 1105, VelAdd]
+type = VelAdd
+trigger1 = Anim != 1105
+y = 1
+
+[State 1105, VelSet]
+type = VelSet
+trigger1 = Anim = 1101
+trigger1 = AnimElem = 2
+y = 2
+
+[State 1105, State]
+type = ChangeState
+trigger1 = Time > 40
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= -5
+value = 1101
+
+;---------------------------------------------------------------------------
+; Super Dragon Punch 1
+[Statedef 1210]
+type = S
+movetype = A
+physics = S
+juggle  = 2
+velset = 0,0
+anim = 1200
+ctrl = 0
+
+[State 1210, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1210, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(10) = 1
+
+[State 1210, 0]
+type = ChangeAnim
+trigger1 = Time <= 30
+value = 1200
+elem = 1
+
+[State 1210, EnvColor]
+type = EnvColor
+trigger1 = Time <= 30
+trigger1 = TimeMod = 2,0
+value = 240,240,240
+ignorehitpause = 1
+persistent = 1
+time = 1
+
+[State 1210, SuperPause]
+type = SuperPause
+trigger1 = Time <= 0
+pos = 0, -60
+anim = S955
+time = 30
+movetime = 30
+sound = S20, 10
+poweradd = 0
+darken = 0
+
+[State 1210, PowerSet]
+type = PowerSet
+trigger1 = Time <= 30
+value = 999
+
+[State 1210, NotHitBy]
+type = NotHitBy
+trigger1 = Anim = 1200
+trigger1 = AnimElem = 2, < 0
+value = SCA
+time = 1
+
+[State 1210, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1210, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1210, HitDef]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = S, HA
+damage = 50, 10
+animtype = Heavy
+hitflag = MAF
+guardflag = MA
+priority = 3, Hit
+pausetime = 10, 10
+sparkno = 2
+sparkxy = -10, -60
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,-6
+airguard.velocity = -1,-4
+air.type = High
+air.velocity = -2,-6
+air.hittime = 20
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 1210, 4]
+type = ChangeState
+trigger1 = Anim = 1200
+trigger1 = AnimElem = 3
+value = 1211
+
+;---------------------------------------------------------------------------
+; Super Dragon Punch Flying 1
+[Statedef 1211]
+type = A
+movetype = A
+physics = N
+juggle  = 2
+velset = 6,-6
+ctrl = 0
+
+[State 1210, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1210, VelMul]
+type = VelMul
+trigger1 = 1
+x = .9
+
+[State 1210, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = .5
+
+[State 1210, PlaySnd]
+type = PlaySnd
+trigger1 = Time <= 0
+value = 1, 10
+channel = 1
+
+[State 1210, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1210, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1210, HitDef]
+type = HitDef
+triggerall = Time < 5
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 4
+attr = A, HA
+damage = 50, 10
+animtype = Heavy
+hitflag = MAF
+guardflag = MA
+priority = 3, Hit
+pausetime = 10, 10
+sparkno = 2
+sparkxy = -10, -100
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,-6
+airguard.velocity = -1,-4
+air.type = High
+air.velocity = -2,-6
+air.hittime = 20
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 1210, 0]
+type = ChangeAnim
+trigger1 = Time >= 10
+trigger1 = Anim = 1200
+trigger1 = AnimTime = 0
+value = 1201
+
+[State 1210, 4]
+type = ChangeState
+trigger1 = Time > 0
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 1212
+
+;---------------------------------------------------------------------------
+; Super Dragon Punch 2
+[Statedef 1212]
+type = S
+movetype = A
+physics = S
+juggle  = 2
+velset = 0,0
+anim = 1200
+ctrl = 0
+
+[State 1210, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1210, 2]
+type = PosSet
+trigger1 = Time <= 0
+y = 0
+
+[State 1210, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1210, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1210, HitDef]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = S, HA
+damage = 50, 10
+animtype = Heavy
+hitflag = MAF
+guardflag = MA
+priority = 3, Hit
+pausetime = 10, 10
+sparkno = 2
+sparkxy = -10, -60
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,-8
+airguard.velocity = -1,-5
+air.type = High
+air.velocity = -2,-6
+air.hittime = 20
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 1210, 4]
+type = ChangeState
+trigger1 = Anim = 1200
+trigger1 = AnimElem = 3
+value = 1213
+
+;---------------------------------------------------------------------------
+; Super Dragon Punch Flying 2
+[Statedef 1213]
+type = A
+movetype = A
+physics = N
+juggle  = 2
+velset = 8,-9
+ctrl = 0
+
+[State 1210, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1210, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = .5
+
+[State 1210, PlaySnd]
+type = PlaySnd
+trigger1 = Time <= 0
+value = 1, 10
+channel = 1
+
+[State 1210, VelMul]
+type = VelMul
+trigger1 = Time >= 2
+x = .9
+
+[State 1210, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1210, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1210, HitDef]
+type = HitDef
+triggerall = Time < 5
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 4
+attr = A, HA
+damage = 50, 10
+animtype = Heavy
+hitflag = MAF
+guardflag = MA
+priority = 3, Hit
+pausetime = 10, 10
+sparkno = 2
+sparkxy = -10, -100
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,-8
+airguard.velocity = -1,-5
+air.type = High
+air.velocity = -2,-6
+air.hittime = 20
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 1210, 0]
+type = ChangeAnim
+trigger1 = Time >= 10
+trigger1 = Anim = 1200
+trigger1 = AnimTime = 0
+value = 1201
+
+[State 1210, 4]
+type = ChangeState
+trigger1 = Time > 0
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 1214
+
+;---------------------------------------------------------------------------
+; Super Dragon Punch 3
+[Statedef 1214]
+type = S
+movetype = A
+physics = S
+juggle  = 5
+velset = 0,0
+anim = 1200
+ctrl = 0
+
+[State 1210, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1210, 2]
+type = PosSet
+trigger1 = Time <= 0
+y = 0
+
+[State 1210, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1210, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1210, HitDef]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = S, HA
+damage = 50, 10
+animtype = Heavy
+hitflag = MAF
+guardflag = MA
+priority = 3, Hit
+pausetime = 10, 10
+sparkno = 2
+sparkxy = -10, -60
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,-8
+airguard.velocity = -1,-6
+air.type = High
+air.velocity = -2,-8
+air.hittime = 20
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 1210, 4]
+type = ChangeState
+trigger1 = Anim = 1200
+trigger1 = AnimElem = 3
+value = 1215
+
+;---------------------------------------------------------------------------
+; Super Dragon Punch Flying 3
+[Statedef 1215]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 10,-12
+ctrl = 0
+
+[State 1210, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1210, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = .5
+
+[State 1210, PlaySnd]
+type = PlaySnd
+trigger1 = Time <= 0
+value = 1, 11
+channel = 1
+
+[State 1210, VelMul]
+type = VelMul
+trigger1 = Time >= 4
+x = .9
+
+[State 1210, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1210, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1210, HitDef]
+type = HitDef
+triggerall = Time < 5
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 4
+attr = A, HA
+damage = 50, 10
+animtype = Heavy
+hitflag = MAF
+guardflag = MA
+priority = 3, Hit
+pausetime = 10, 10
+sparkno = 2
+sparkxy = -10, -100
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,-8
+airguard.velocity = -1,-6
+air.type = High
+air.velocity = -2,-8
+air.hittime = 20
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 1210, 0]
+type = ChangeAnim
+trigger1 = Time >= 15
+trigger1 = Anim = 1200
+trigger1 = AnimTime = 0
+value = 1201
+
+[State 1210, 4]
+type = ChangeState
+trigger1 = Time > 0
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 52
+
+;---------------------------------------------------------------------------
+; True Dragon Punch
+[Statedef 1220]
+type = S
+movetype = A
+physics = S
+juggle  = 10
+velset = 0,0
+anim = 1200
+ctrl = 0
+
+[State 1220, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1220, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(0) = 0
+
+[State 1220, VarSet]
+type = VarSet
+trigger1 = MoveHit
+ignorehitpause = 1
+var(0) = 1
+
+[State 1220, VarSet]
+type = VarSet
+trigger1 = Time <= 0
+var(10) = 1
+
+[State 1220, 0]
+type = ChangeAnim
+trigger1 = Time <= 40
+value = 1200
+elem = 1
+
+[State 1220, EnvColor]
+type = EnvColor
+trigger1 = Time <= 30
+trigger1 = TimeMod = 2,0
+value = 240,240,240
+ignorehitpause = 1
+persistent = 1
+time = 1
+
+[State 1220, SuperPause]
+type = SuperPause
+trigger1 = Time <= 0
+pos = 0, -60
+anim = S955
+time = 30
+movetime = 30
+sound = S20, 10
+poweradd = 0
+darken = 0
+
+[State 1220, PowerSet]
+type = PowerSet
+trigger1 = Time <= 30
+value = 999
+
+[State 1220, NotHitBy]
+type = NotHitBy
+trigger1 = Anim = 1200
+trigger1 = AnimElem = 2, < 0
+value = SCA
+time = 1
+
+[State 1220, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1220, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1220, HitDef]
+type = HitDef
+triggerall = Anim = 1200
+trigger1 = AnimElem = 2
+attr = S, HA
+damage = 100, 10
+animtype = Medium
+hitflag = MAF
+guardflag = MA
+priority = 3, Hit
+guard.pausetime = 20, 20
+pausetime = 40, 40
+sparkno = 3
+sparkxy = -10, -70
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 20
+ground.velocity = 2,-2
+guard.velocity = -4
+air.type = Low
+air.velocity = 2,-2
+air.hittime = 20
+envshake.time = 20
+envshake.freq = 100
+envshake.ampl = -5
+envshake.phase = 10
+fall.animtype = Medium
+kill = 0
+
+[State 1220, Anim]
+type = ChangeAnim
+triggerall = Var(0) > 0
+triggerall = Anim = 1200
+trigger1 = AnimElem = 3
+value = 1220
+
+[State 1220, PosAdd]
+type = PosAdd
+triggerall = Anim = 1220
+trigger1 = AnimElem = 2
+x = -24
+
+[State 1220, HitDef]
+type = HitDef
+triggerall = Anim = 1220
+trigger1 = AnimElem = 2
+attr = S, HA
+damage = 100, 10
+animtype = Heavy
+hitflag = MAF
+priority = 3, Hit
+pausetime = 20, 20
+sparkno = 3
+sparkxy = -10, -55
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 20
+ground.velocity = 1,-15
+air.type = Low
+air.velocity = 1,-15
+air.hittime = 20
+envshake.time = 20
+envshake.freq = 100
+envshake.ampl = -5
+envshake.phase = 10
+fall.animtype = Heavy
+kill = 0
+
+[State 1220, 4]
+type = ChangeState
+trigger1 = Anim = 1220
+trigger1 = AnimElem = 3
+value = 1222
+
+[State 1220, 4]
+type = ChangeState
+trigger1 = Anim = 1200
+trigger1 = AnimElem = 3
+value = 1221
+
+;---------------------------------------------------------------------------
+; Dragon Punch Flying
+[Statedef 1221]
+type = A
+movetype = A
+physics = N
+juggle  = 10
+velset = 10,-10
+ctrl = 0
+
+[State 1220, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1220, PlaySnd]
+type = PlaySnd
+trigger1 = Time <= 0
+value = 1, 11
+channel = 1
+
+[State 1220, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1220, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1220, HitDef]
+type = HitDef
+triggerall = Anim = 1200
+trigger1 = AnimElem = 3
+attr = A, HA
+damage = 200, 10
+animtype = Heavy
+hitflag = MAF
+guardflag = MA
+priority = 3, Hit
+pausetime = 10, 10
+sparkno = 3
+sparkxy = -10, -110
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -4,-10
+airguard.velocity = -2,-5
+air.type = High
+air.velocity = -4,-10
+air.hittime = 10
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 1220, VelMul]
+type = VelMul
+trigger1 = 1
+x = .9
+
+[State 1220, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = .4
+
+[State 1220, 0]
+type = ChangeAnim
+trigger1 = Time >= 15
+trigger1 = Anim = 1200
+trigger1 = AnimTime = 0
+value = 1201
+
+[State 1220, 4]
+type = ChangeState
+trigger1 = Time > 0
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 52
+
+;---------------------------------------------------------------------------
+; True Dragon Punch Flying
+[Statedef 1222]
+type = A
+movetype = A
+physics = N
+juggle  = 20
+velset = 10,-15
+ctrl = 0
+
+[State 1220, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 1220, VelMul]
+type = VelMul
+trigger1 = 1
+x = .9
+
+[State 1220, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = .5
+
+[State 1220, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 1220, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 1220, 3]
+type = HitDef
+trigger1 = AnimElem = 3
+attr = A, HA
+damage = 200, 10
+animtype = Up
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 10, 10
+sparkno = 3
+sparkxy = 0, -110
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 20
+ground.velocity = -2,-15
+air.type = High
+air.velocity = -2,-15
+air.hittime = 20
+envshake.time = 20
+envshake.freq = 100
+envshake.ampl = -5
+envshake.phase = 10
+fall.envshake.time = 10
+fall.envshake.freq = 100
+fall.envshake.ampl = -5
+fall.envshake.phase = 10
+fall.recover = 0
+air.fall = 1
+yaccel = .5
+fall = 1
+
+[State 1220, 4]
+type = ChangeState
+trigger1 = Time > 0
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 52
+
+;---------------------------------------------------------------------------
+; Shun Goku Satsu
+[Statedef 2000]
+type = S
+movetype = A
+physics = N
+juggle  = 5
+velset = 0,0
+anim = 2000
+ctrl = 0
+
+[State 2000, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 2000, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 2000, PosAdd]
+type = PosAdd
+trigger1 = Time <= 0
+x = 25
+
+[State 2000, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 2000, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 2000, Low]
+type = HitDef
+triggerall = Anim = 2000
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 4
+trigger3 = AnimElem = 6
+trigger4 = AnimElem = 8
+trigger5 = AnimElem = 12
+trigger6 = AnimElem = 18
+trigger7 = AnimElem = 20
+trigger8 = AnimElem = 23
+trigger9 = AnimElem = 29
+attr = S, HA
+damage = 30, 10
+animtype = Medium
+hitflag = MA
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = 2
+sparkxy = -10, -60
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = Low
+ground.slidetime = 10
+ground.hittime  = 50
+ground.velocity = 0
+airguard.velocity = -2,-1
+air.type = Low
+air.velocity = -2,-2
+air.hittime = 10
+kill = 0
+
+[State 2000, High]
+type = HitDef
+triggerall = Anim = 2000
+trigger1 = AnimElem = 26
+trigger2 = AnimElem = 31
+attr = S, HA
+damage = 30, 10
+animtype = Medium
+hitflag = MA
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = 2
+sparkxy = -10, -60
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 50
+ground.velocity = 0
+airguard.velocity = -2,-1
+air.type = High
+air.velocity = -2,-2
+air.hittime = 10
+kill = 0
+
+[State 2000, HitDef]
+type = HitDef
+triggerall = Anim = 2000
+trigger1 = AnimElem = 35
+attr = S, HA
+damage = 50, 10
+animtype = Heavy
+hitflag = MAF
+priority = 3, Hit
+pausetime = 10, 8
+sparkno = 2
+sparkxy = -10, -60
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = 0,-8
+airguard.velocity = 0,-4
+air.type = High
+air.velocity = 0,-8
+air.hittime = 10
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 2000, State]
+type = ChangeState
+triggerall = Anim = 2000
+trigger1 = AnimElem = 36
+value = 2001
+
+;---------------------------------------------------------------------------
+; Shun Goku Satsu Dragon Punch
+[Statedef 2001]
+type = A
+movetype = A
+physics = N
+juggle  = 5
+velset = 10,-10
+ctrl = 0
+
+[State 2000, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 2000, BGPalFX]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -100,-100,-100
+ignorehitpause = 1
+
+[State 2000, Flash]
+type = EnvColor
+trigger1 = MoveHit
+value = 240,0,0
+ignorehitpause = 1
+time = 2
+
+[State 2000, Reset]
+type = MoveHitReset
+trigger1 = MoveHit
+ignorehitpause = 1
+
+[State 2000, HitDef]
+type = HitDef
+trigger1 = Time < 5
+trigger1 = Anim = 2000
+trigger1 = AnimElem = 36
+attr = A, HA
+damage = 50, 10
+animtype = Heavy
+hitflag = MAF
+priority = 3, Hit
+pausetime = 10, 8
+sparkno = 2
+sparkxy = -10, -110
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -1,-8
+airguard.velocity = -1,-4
+air.type = High
+air.velocity = -1,-8
+air.hittime = 10
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 2000, HitDef]
+type = HitDef
+trigger1 = Time < 5
+trigger1 = Anim = 2000
+trigger1 = AnimElem = 37
+attr = A, HA
+damage = 50, 10
+animtype = Heavy
+hitflag = MAF
+priority = 3, Hit
+pausetime = 10, 8
+sparkno = 2
+sparkxy = -10, -110
+hitsound = S2, 2
+guardsound = S2, 0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -1,-8
+airguard.velocity = -1,-4
+air.type = High
+air.velocity = -1,-8
+air.hittime = 10
+fall.yvelocity = 0
+fall.recover = 0
+air.fall = 1
+fall = 1
+
+[State 2000, VelMul]
+type = VelMul
+trigger1 = 1
+x = .9
+
+[State 2000, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = .4
+
+[State 2000, Anim]
+type = ChangeAnim
+trigger1 = Time >= 10
+trigger1 = Anim = 2000
+trigger1 = AnimTime = 0
+value = 1201
+
+[State 2000, State]
+type = ChangeState
+trigger1 = Anim = 1201
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 2002
+
+;---------------------------------------------------------------------------
+; Shun Goku Satsu End
+[Statedef 2002]
+type = S
+movetype = I
+physics = S
+velset = 0,0
+anim = 40
+ctrl = 0
+
+[State 2000, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 2000, PosSet]
+type = PosSet
+trigger1 = Time <= 0
+y = 0
+
+[State 2000, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 0
+
+[State 2000, TargetState]
+type = TargetState
+triggerall = NumTarget > 0
+triggerall = Win = 0
+triggerall = Time < 50
+trigger1 = Target, StateNo = 5110
+value = 2003
+
+[State 2000, Anim]
+type = ChangeAnim
+triggerall = Win
+trigger1 = Anim = 40
+trigger1 = AnimTime = 0
+value = 180
+
+[State 2000, Anim]
+type = ChangeAnim
+triggerall = Win = 0
+trigger1 = Anim = 40
+trigger1 = AnimTime = 0
+value = 2001
+
+[State 2000, State]
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger2 = Anim = 180
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Liedown
+[Statedef 2003]
+type    = L
+movetype= H
+physics = N
+
+[State 2000, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 2000, 1] ;For hit up/up-diag type (from state 5081)
+type = ChangeAnim
+persistent = 0
+trigger1 = SelfAnimExist(5110 + (anim % 10))
+trigger1 = anim = [5081,5089]
+value = 5110 + (anim % 10)
+
+[State 2000, 2] ;Hit ground anim (normal)
+type = ChangeAnim
+triggerall = time = 0
+triggerall = anim != [5110,5119] ;Not already changed anim
+trigger1 = anim != [5161,5169]
+trigger2 = !SelfAnimExist(5170 + (anim % 10))
+value = 5170
+
+[State 2000, 3] ;Hit ground anim (for hit up)
+type = ChangeAnim
+triggerall = time = 0
+triggerall = anim != [5110,5119] ;Not already changed anim
+trigger1 = anim = [5161,5169]
+trigger1 = SelfAnimExist(5170 + (anim % 10))
+value = 5170 + (anim % 10)
+
+[State 2000, 5]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 2000, 8]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 2000, 9] ;For hit up type
+type = ChangeAnim
+persistent = 0
+triggerall = anim = [5171,5179]
+triggerall = SelfAnimExist(5110 + (anim % 10))
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground anim
+value = 5110 + (anim % 10)
+
+[State 2000, 10] ;For normal
+type = ChangeAnim
+persistent = 0
+triggerall = Anim != [5111,5119]
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground frame
+value = 5110
+
+[State 2000, 11] ;If just died
+type = SelfState
+triggerall = !alive
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground frame
+trigger3 = Anim = [5110,5119]
+value = 5150
+
+[State 2000, 13] ;Friction
+type = VelMul
+trigger1 = 1
+x = 0.85
+
+[State 2000, 11]
+type = SelfState
+trigger1 = Time >= 70
+value = 5120
+
+;---------------------------------------------------------------------------

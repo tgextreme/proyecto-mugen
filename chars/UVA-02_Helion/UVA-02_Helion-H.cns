@@ -1,0 +1,489 @@
+;---------------------------------------------------------------------------
+;超必殺技
+;---------------------------------------------------------------------------
+; シュラハトフェルトクヴァール1
+[Statedef 3000]
+type    = S
+movetype= A
+physics = S
+anim = 3000
+velset = 0,0
+ctrl = 0
+poweradd = -1000
+sprpriority = 2
+
+[State 1000, 0]
+type = NotHitBy
+trigger1 = time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+
+[State 1000, 0]
+type = PlayerPush
+trigger1 = time >= 1
+value = 1
+
+[State 1000, 0]
+type = SuperPause
+trigger1 = Animelem = 1,1
+time = 30
+anim = s3010
+sound = -1
+pos = -24,11
+movetime = 30
+
+[State 2000, 6]
+type = Envcolor
+trigger1 = time = 2
+trigger2 = time = 4
+trigger3 = time = 6
+trigger4 = time = 8
+trigger5 = time = 10
+trigger6 = time = 12
+trigger7 = time = 14
+trigger8 = time = 16
+trigger9 = time = 18
+trigger10= time = 20
+trigger11= time = 22
+trigger12= time = 24
+trigger13= time = 26
+trigger14= time = 28
+trigger15= time = 30
+value = 240,240,240
+time = 1
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = 3000,0
+
+[State 200, 1]
+type = PosAdd
+trigger1 = time = 0
+x = 0
+y = -60
+
+[State 200, 1]
+type = Velset
+trigger1 = animelem = 2
+x = 15
+y = -5
+
+[State 200, 1]
+type = Velset
+trigger1 = animelem = 3
+x = 25
+y = 0
+
+[State 200, 1]
+type = Velset
+trigger1 = time = 40
+x = 15
+y = 5
+
+[State 200, 1]
+type = Velset
+trigger1 = time = 50
+x = 10
+y = 7
+
+[State 440, 3]
+type = HitDef
+trigger1 = animelem = 1
+attr = S,SA
+damage = 20, 5
+hitflag = MAF
+guardflag = MAF
+pausetime = 8,10
+sparkno = s614
+guard.sparkno = s616
+sparkxy = -15,-60
+hitsound = s0,1
+guardsound = s10,6
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+ground.hittime  = 20
+ground.velocity = -10
+air.velocity = -3
+
+[State 440, 3]
+type = HitDef
+trigger1 = animelem = 4
+attr = S,SA
+damage = 20, 5
+hitflag = MAF
+guardflag = MAF
+pausetime = 8,10
+sparkno = s614
+guard.sparkno = s616
+sparkxy = -15,-60
+hitsound = s0,1
+guardsound = s10,6
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+ground.hittime  = 20
+ground.velocity = -25
+air.velocity = -3
+
+[State 440, 3]
+type = HitDef
+trigger1 = animelem = 6
+attr = S,SA
+damage = 20, 5
+hitflag = MAF
+guardflag = MAF
+pausetime = 8,10
+sparkno = s614
+guard.sparkno = s616
+sparkxy = -15,-60
+hitsound = s0,1
+guardsound = s10,6
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+ground.hittime  = 20
+ground.velocity = -10
+air.velocity = -3
+
+[State 400, 3]
+type = Envcolor
+trigger1 = movehit = 1
+value = 240,0,0
+time = 2
+
+[State 2005, 4]
+type = BGPalfx
+trigger1 = 1
+add = -81,-88,-81
+time = 1
+ignorehitpause = 1
+
+[State 1901, 6]
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 3001
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; シュラハトフェルトクヴァール2
+[Statedef 3001]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 1901, 6]
+type = Changeanim
+trigger1 = time =0
+value = 3001
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = AnimElem = 7
+value = s200,0
+
+[State 400, 1]
+type = HitDef
+trigger1 = animelem = 7
+attr = S, NA
+damage    = 55,0
+animtype = hard
+getpower = 0,30
+givepower = 30,3
+hitflag = MAF
+guardflag = MAF
+pausetime = 8,10
+sparkno = S201
+guard.sparkno = S203
+guardsound = s200,2
+sparkxy = -15,-20
+hitsound = s200,1
+guardsound = 6,0
+ground.type = low
+ground.slidetime = 10
+ground.hittime  = 15
+ground.velocity = -4
+;airguard.velocity = -2
+air.velocity = -7,1
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = AnimElem = 16
+value = s200,0
+
+[State 200, 1]
+type = HitDef
+trigger1 = animelem = 16
+attr = S, NA
+damage    = 55,0
+animtype = hard
+getpower = 0,30
+givepower = 30,3
+guardflag = MA
+hitflag = MAF
+pausetime = 8,10
+sparkno = S201
+guard.sparkno = S203
+guardsound = s200,2
+sparkxy = -15,-60
+hitsound = s200,1
+guardsound = 6,0
+ground.type = low
+ground.slidetime = 10
+ground.hittime  = 15
+ground.velocity = -8
+;airguard.velocity = -2
+air.velocity = -7,1
+
+[State 400, 3]
+type = Envcolor
+trigger1 = movehit = 1
+value = 240,0,0
+time = 2
+
+[State 2005, 4]
+type = BGPalfx
+trigger1 = 1
+add = -81,-88,-81
+time = 1
+ignorehitpause = 1
+
+[State 1901, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 3002
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; シュラハトフェルトクヴァール3
+[Statedef 3002]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 1901, 6]
+type = Changeanim
+trigger1 = time =0
+value = 3002
+
+[State 200, 1]
+type = Velset
+trigger1 = time >= 0
+x = 6.5
+y = 0
+
+[State 250, 1]
+type = PlaySnd
+trigger1 = animelem = 2 ||animelem = 6 || animelem = 10 || animelem = 14|| animelem = 18 || animelem = 22
+value = s250,0
+
+[State 250, 3]
+type = HitDef
+trigger1 = animelem = 2 ||animelem = 6 || animelem = 10 || animelem = 14|| animelem = 18 || animelem = 22
+attr = S, NA
+damage    = 35,0
+animtype = hard
+getpower = 60,30
+givepower = 30,3
+guardflag = MA
+hitflag = MAF
+pausetime = 8,10
+sparkno = S201
+guard.sparkno = S203
+guardsound = s200,2
+sparkxy = -15,-60
+hitsound = s200,1
+guardsound = 6,0
+ground.type = low
+ground.slidetime = 10
+ground.hittime  = 15
+ground.velocity = -8
+;airguard.velocity = -2
+air.velocity = -7,1
+
+[State 400, 3]
+type = Envcolor
+trigger1 = movehit = 1
+value = 240,0,0
+time = 2
+
+[State 2005, 4]
+type = BGPalfx
+trigger1 = 1
+add = -81,-88,-81
+time = 1
+ignorehitpause = 1
+
+[State 1901, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 3003
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; シュラハトフェルトクヴァール4
+[Statedef 3003]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 1901, 6]
+type = Changeanim
+trigger1 = time =0
+value = 3003
+
+[State 440, 3]
+type = HitDef
+trigger1 = animelem = 6
+attr = S,SA
+damage = 30, 5
+hitflag = MAF
+guardflag = MAF
+animtype = up
+pausetime = 8,10
+sparkno = s614
+guard.sparkno = s616
+sparkxy = -15,-60
+hitsound = s0,1
+fall = 1
+guardsound = s10,6
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+ground.hittime  = 20
+ground.velocity = 0,-8
+air.velocity = 0,-8
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = Animelem = 11
+value = 1000,0
+
+[State 440, 3]
+type = HitDef
+trigger1 = animelem = 14
+attr = S,SA
+damage = 30, 5
+hitflag = MAF
+guardflag = MAF
+animtype = up
+pausetime = 8,10
+sparkno = s614
+guard.sparkno = s616
+sparkxy = -15,-60
+hitsound = s0,1
+fall = 1
+guardsound = s10,6
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+ground.hittime  = 20
+ground.velocity = -5,-8
+air.velocity = -5,-8
+
+[State 400, 3]
+type = Envcolor
+trigger1 = movehit = 1
+value = 240,0,0
+time = 2
+
+[State 2005, 4]
+type = BGPalfx
+trigger1 = 1
+add = -81,-88,-81
+time = 1
+ignorehitpause = 1
+
+[State 1901, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; ギガクラッシュ1
+[Statedef 2000]
+type    = S
+movetype= A
+physics = S
+anim  = 2000
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 1901, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 2001
+ctrl = 0
+
+;---------------------------------------------------------------------------
+; ギガクラッシュ2
+[Statedef 2001]
+type    = S
+movetype= A
+physics = S
+anim  = 2001
+velset = 0,0
+ctrl = 0
+poweradd = -1000
+sprpriority = 2
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 2000,0
+
+[State 440, 3]
+type = HitDef
+trigger1 = time = 0
+attr = S,SA
+damage = 50, 5
+hitflag = MAF
+guardflag = MAF
+pausetime = 8,10
+sparkno = s614
+guard.sparkno = s616
+sparkxy = -15,-60
+hitsound = -1
+fall = 1
+guardsound = s10,6
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+ground.hittime  = 20
+ground.velocity = -5,-10
+air.velocity = -3
+
+[State 1901, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 2002
+ctrl = 0
+
+;---------------------------------------------------------------------------
+; ギガクラッシュ3
+[Statedef 2002]
+type    = S
+movetype= A
+physics = S
+anim  = 2002
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 1901, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1

@@ -1,0 +1,196 @@
+[Info]
+name = AOF 2 John stage
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -339
+boundright = 339
+boundhigh = -480
+boundlow = 0
+verticalfollow = .95
+tension = 150
+
+[PlayerInfo]
+p1startx = -70
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+[Scaling]
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1.2
+
+[Bound]
+screenleft = 15
+screenright = 15
+
+[StageInfo]
+zoffset = 207
+autoturn = 1
+resetBG = 1
+
+[Shadow]
+color = 128,128,128
+yscale = .3
+
+[Music]
+bgmusic = sound/kof99Ryuko.mid
+bgvolume = 0
+
+[BGdef]
+spr = stages/JohnAOF2bg.sff
+
+[BG ciel]
+type = normal
+spriteno = 4,0
+start = 0,105
+delta = 0.7,0.9
+tile = 1,0
+mask = 0
+
+[BG nuage 1]
+type = normal
+spriteno = 5,0
+start = 80,0
+delta = 0.5,0.75
+tile = 1,0
+tilespacing = 160,0
+velocity = 0.1
+mask = 0
+
+[BG nuage 1]
+type = normal
+spriteno = 5,0
+start = 80,-50
+delta = 0.5,0.75
+tile = 1,0
+tilespacing = 160,0
+velocity = 0.15
+mask = 0
+
+[BG nuage 2]
+type = normal
+spriteno = 5,1
+start = 0,-310
+delta = 0.55,0.79
+tile = 1,2
+tilespacing = 180,20
+velocity = 0.2
+mask = 0
+
+[BG LittleTree1]
+type = normal
+spriteno = 6,1
+start = -550,90
+tile = 4,0
+tilespacing = 10
+delta = 0.85,0.91
+mask = 1
+
+[BG LittleTree1]
+type = normal
+spriteno = 6,1
+start = -350,110
+tile = 3,0
+tilespacing = 50
+delta = 0.90,0.93
+mask = 1
+
+[BG LittleTree2]
+type = normal
+spriteno = 6,1
+start = 150,125
+tile = 4,0
+tilespacing = 80
+delta = 0.90,0.93
+mask = 1
+
+[BG LittleTree3]
+type = normal
+spriteno = 6,1
+start = -950,120
+tile = 1,0
+tilespacing = 100
+delta = 0.94,0.97
+mask = 1
+
+[BG PlanA]
+type = normal
+spriteno = 0,0
+start = 0,240
+delta = 1,1
+mask = 1
+
+[BG PlanB]
+type = anim
+actionno = 1
+start = -76,205
+delta = 1,1
+mask = 1
+
+[BG dog]
+type = anim
+actionno = 2
+start = -377,133
+delta = 1,1
+
+[BG dust]
+type = anim
+actionno = 3
+start = 215,212
+delta = 1,1
+
+[BG BigTree]
+type = normal
+spriteno = 6,0
+start = 466,251
+delta = 1.2,1.1
+layerno = 1
+mask = 1
+
+[BG BigTree]
+type = normal
+spriteno = 6,0
+start = -550,251
+delta = 1.2,1.1
+layerno = 1
+mask = 1
+
+
+;[Begin action 0]
+;
+;0,0, 0,0, 10
+
+[Begin action 1]
+
+1,0, 0,0, 2
+1,1, 0,0, 2
+1,2, 0,0, 2
+1,3, 0,0, 2
+
+[Begin action 2]
+
+2,0, 0,0, 3
+2,1, 0,0, 5
+2,2, 0,0, 4
+2,0, 0,0, 50
+
+[Begin action 3]
+
+3, 0, 0,0, 2
+3, 1, 0,0, 2
+3, 2, 0,0, 2
+3, 3, 0,0, 2

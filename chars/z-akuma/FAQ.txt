@@ -1,0 +1,92 @@
+Zero-Akuma (Zero-Gouki) Cyberbots
+-----------------------
+
+Frequently Asked Questions
+==========================
+Please read over this faq carefully, as I took a
+lot of time to write all this stuff. It might even
+answer some of your questions about my work. 
+
+WHO IS Z-AKUMA?
+---------------
+Z-Akuma (Z-Gouki) is a modified robot version of the infamous
+secret character, Akuma from the Street Fighter Series. Z-Akuma
+is an exclusive character only playable in the home version of
+Cyberbots: Full Metal Madness. (Sega Saturn, Sony Playstation)
+
+Z-Akuma has made many cameo appearances in other Capcom games,
+including Marvel Vs. Street Fighter (See Cyclops ending), and
+Card Fighters Clash Series on the Neo-Geo Pocket. Cyber Akuma
+(Mech. Gouki) from Marvel Vs. Street Fighter makes a remarkable
+resembalnce to Z-Akuma from Cyberbots.
+
+Z-Akuma has all the signature moves Akuma has from the Street
+Fighter Series, including the infamous Raging Demon, AKA the
+Shun Goku Satsu. What's cool about this Shun Goku Satsu is that
+you can actually see his combos, not just the usual white screen
+murder case. 
+
+WHY DOES THE SCREEN FLASH
+DURING A SUPER PAUSE?
+-------------------------
+Anywone who has played Cyberbots knows that this is a
+standard effect used for a super pause. If you get any 
+kind of seisure from flashing screens, it's reccommended
+that you don't play the game. Unfortunately, Cyberbots
+has a lot of flashing screens, which is one reason why
+I think that Cyberbots never made it to America.
+
+WHY DOES THE CHARACTER FLASH
+FOR A SHORT WHILE WHEN YOUR
+POWER REACHES MAX?
+----------------------------
+That is a standard shine effect in Cyberbots. After your
+super meter reaches full power, your cyberbot character
+starts to flash for about 10 to 12 seconds.
+
+WHEN ATTACKING, WHY DOES HUMAN
+OPPONNENTS SOUND MECHANICAL?
+------------------------------
+This is a standard hit/collision sound for the game.
+Since Cyberbots consists of only robot fighters, it
+was the standard sound they used for all hit sounds,
+whenever a character attacked its opponent.
+
+WHAT IS THE DEAL WITH
+THE NEW HIT SYSTEM?
+---------------------
+[Referring to hitsystm.cns]
+The new hit system I included is a system based on
+the way Z-Akuma is attacked/falls down in Cyberbots.
+I tried to make this exactly as the way he gets hit
+in Cyberbots. Since standard Mugen characters have
+the same universal hit states, Z-Akuma's hit states
+would not have been accurate to Cyberbots standards.
+So I had to apply my own hit system as close to the
+game as possible.
+
+HOW DID YOU MAKE THE
+FIREBALL BEAMS?
+--------------------
+To be honest with you, this was extremely complciated
+to code, and may still have some minor bugs. What I did
+was use two helpers to trigger the distance between the
+starting point of the beam and the attack point of the
+beam. I used 1 pixel wide image of the center of the beam,
+making sure the X axis was right at point 0. Then I used
+Explod and ModifyExplod controllers to scale the size of
+the center of the beam to stretch out to the distance of
+the other end of the beam attacking the opponent.
+
+WHY DO YOU GAIN POWER
+DURING A SUPER MOVE?
+----------------------
+Apparently, that's what happens in Cyberbots. For some
+reason, they seem to gain a little bit of power back
+while attacking during their super moves.
+
+
+You need something to be answered in the FAQ,
+concerning any kind of bug/issue with Zero-Akuma?
+Fell free to send comments and suggestions to N64Mario84
+(N64Mario84@hotmail.com). Thanks.

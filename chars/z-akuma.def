@@ -1,0 +1,39 @@
+; Definition file for Zero-Akuma
+;--------------------
+;[Player Information]
+;--------------------
+[Info]
+name = "Zero-Akuma"	   ;Name of character
+displayname = "Z-Akuma"	   ;Name of character to display
+versiondate = 2003.5.17    ;Version date of character
+mugenversion = 2001.04.14  ;Version of M.U.G.E.N character works on
+author = "N64Mario"	   ;Character author name
+pal.defaults = 1,2,3,4,5,6 ;Default palettes in order of preference
+;--------------------
+;[Common Files] 
+;--------------------
+[Files]
+cmd	 = common/command.cmd	;Commands
+cns	 = common/constant.cns	;Constants
+stcommon = common/common.cns	;Common States
+sprite	 = common/sprite.sff	;Sprites
+anim	 = common/animation.air ;Animation
+sound	 = common/sound.snd	;Sound
+;--------------------
+;[States] 
+;--------------------
+st	 = state/zakuma.cns	;Z-Akuma States
+st2	 = state/zakuma-s.cns	;Special Attacks
+st3	 = state/zakuma-h.cns	;Hyper Attacks
+st4	 = state/hitsystm.cns	;Hit System
+st5	 = state/override.cns	;Override
+st6	 = state/helpers.cns	;Helpers
+;--------------------
+;[Palettes] (can have up to 12)
+;--------------------
+pal1   = palette/color1.act	;Cyberbots Color 1
+pal2   = palette/color2.act	;Cyberbots Color 2
+pal3   = palette/color3.act	;Normal Akuma Color 1
+pal4   = palette/color4.act	;Normal Akuma Color 2
+pal5   = palette/color5.act	;Shin Akuma Color 1
+pal6   = palette/color6.act	;Shin Akuma Color 2

@@ -1,0 +1,97 @@
+;---------------------------------------------------------------------------
+; パワー溜め
+;---------------------------------------------------------------------------
+;パワー溜めモーション
+[Statedef 550]
+type     = S
+movetype = I
+physics  = S
+ctrl     = 0
+velset   = 0,0
+anim     = 550
+sprpriority = 1
+
+[State 550,1]
+type = PowerAdd
+trigger1 = 1
+value = 6
+
+[State 550,2]
+type = Helper
+trigger1 = time = 1
+helpertype = normal
+name = "gauge"
+id = 560
+postype = p1
+pos = 0,0
+stateno = 560
+ownpal = 1
+
+[State 550, 3]
+type = playsnd
+trigger1 = time = 0
+value = 3010,0
+
+[State 550, 4]
+type = playsnd
+trigger1 = time = 32
+value = 3010,1
+
+[State 550, 5]
+type = playsnd
+trigger1 = timemod = 16,8
+trigger1 = time > 50
+value = 3010,1
+
+[State 550,6]
+type = ChangeState
+trigger1 = Command != "hold_x"
+trigger2 = Command != "hold_y"
+value = 580
+ctrl = 1
+
+[State 550,6]
+type = ChangeState
+trigger1 = Power >= 1000
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;チャージ終了
+[Statedef 580]
+type = A
+physics = N
+movetype = I
+ctrl = 0
+sprpriority = 1
+
+[State 550,6]
+type = ChangeState
+trigger1 = time = 10
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;エフェクト
+[Statedef 560]
+type = A
+physics = N
+movetype = I
+ctrl = 0
+anim = 560
+sprpriority = 3
+
+[State 560, 1]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 560, 2]
+type = BindToParent
+trigger1 = 1
+pos = -1,-31
+
+[State 560, 3]
+type = Destroyself
+trigger1 = parent,stateno != 550
+trigger1 = parent,stateno != 580
